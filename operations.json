@@ -1,0 +1,5074 @@
+[
+ {
+  "description": "Simple brightness, contrast and saturation, the same over the whole picture; 0 leaves each unchanged. Contrast spreads tones away from mid-gray (positive) or pulls them toward it (negative; -50 is flat gray). For photos prefer light, which also recovers highlights and shadows.",
+  "group": "adjust",
+  "name": "brightness_contrast",
+  "parameters": {
+   "brightness": {
+    "default": 0,
+    "description": "Brightness",
+    "maximum": 255,
+    "minimum": -255,
+    "type": "integer"
+   },
+   "contrast": {
+    "default": 0,
+    "description": "Contrast",
+    "maximum": 50,
+    "minimum": -50,
+    "type": "integer"
+   },
+   "saturation": {
+    "default": 0,
+    "description": "Color saturation",
+    "maximum": 255,
+    "minimum": -255,
+    "type": "integer"
+   }
+  },
+  "title": "Brightness / contrast",
+  "uses_selection": true
+ },
+ {
+  "description": "Stretches the tonal range so the darkest pixel becomes black and the brightest white.",
+  "group": "adjust",
+  "name": "auto_levels",
+  "parameters": {},
+  "title": "Auto levels",
+  "uses_selection": true
+ },
+ {
+  "description": "Histogram equalization: spreads tones evenly; strong, often harsh.",
+  "group": "adjust",
+  "name": "equalize",
+  "parameters": {},
+  "title": "Equalization",
+  "uses_selection": true
+ },
+ {
+  "description": "Smooths away the square blocks a heavily compressed JPEG shows in skies and skin. The block grid is found from the picture, so a cropped JPEG works too; steps across block edges smaller than strength allows are spread out, larger ones are real edges and stay.",
+  "group": "filters",
+  "name": "jpeg_artifacts",
+  "parameters": {
+   "strength": {
+    "default": 50,
+    "description": "How strong a step across a block edge may be smoothed",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Remove JPEG artifacts",
+  "uses_selection": true
+ },
+ {
+  "description": "Spreads dark areas (erodes highlights).",
+  "group": "filters",
+  "name": "minimum",
+  "parameters": {
+   "size": {
+    "default": 3,
+    "description": "Filter window, pixels (square)",
+    "maximum": 15,
+    "minimum": 2,
+    "type": "integer"
+   }
+  },
+  "title": "Minimum",
+  "uses_selection": true
+ },
+ {
+  "description": "Spreads bright areas (erodes shadows).",
+  "group": "filters",
+  "name": "maximum",
+  "parameters": {
+   "size": {
+    "default": 3,
+    "description": "Filter window, pixels (square)",
+    "maximum": 15,
+    "minimum": 2,
+    "type": "integer"
+   }
+  },
+  "title": "Maximum",
+  "uses_selection": true
+ },
+ {
+  "description": "Keeps only edges, as dark lines on white.",
+  "group": "filters",
+  "name": "outline",
+  "parameters": {},
+  "title": "Contour outlining",
+  "uses_selection": true
+ },
+ {
+  "description": "Turns the picture into a pencil-like drawing.",
+  "group": "effects",
+  "name": "hand_drawing",
+  "parameters": {
+   "size": {
+    "default": 3,
+    "description": "Filter window, pixels (square)",
+    "maximum": 15,
+    "minimum": 2,
+    "type": "integer"
+   }
+  },
+  "title": "Hand drawing",
+  "uses_selection": true
+ },
+ {
+  "description": "Smooths flat areas while keeping contrasty details.",
+  "group": "filters",
+  "name": "clean_background",
+  "parameters": {
+   "size": {
+    "default": 3,
+    "description": "Filter window, pixels (square)",
+    "maximum": 15,
+    "minimum": 2,
+    "type": "integer"
+   }
+  },
+  "title": "Cleaning background",
+  "uses_selection": true
+ },
+ {
+  "description": "Pixelates into flat square tiles.",
+  "group": "effects",
+  "name": "mosaic",
+  "parameters": {
+   "tile": {
+    "default": 8,
+    "description": "Tile size, pixels",
+    "maximum": 64,
+    "minimum": 2,
+    "type": "integer"
+   }
+  },
+  "title": "Pixelate",
+  "uses_selection": true
+ },
+ {
+  "description": "Looks as if seen through faceted glass.",
+  "group": "effects",
+  "name": "faceted_glass",
+  "parameters": {
+   "tile": {
+    "default": 8,
+    "description": "Tile size, pixels",
+    "maximum": 64,
+    "minimum": 2,
+    "type": "integer"
+   }
+  },
+  "title": "Faceted glass",
+  "uses_selection": true
+ },
+ {
+  "description": "Turns the picture into irregular flat-colored cells about cell pixels across, each the average color of its pixels (like stained glass; Mosaic makes squares).",
+  "group": "effects",
+  "name": "crystallize",
+  "parameters": {
+   "cell": {
+    "default": 10,
+    "description": "Cell size, pixels",
+    "maximum": 300,
+    "minimum": 3,
+    "type": "integer"
+   }
+  },
+  "title": "Crystallize",
+  "uses_selection": true
+ },
+ {
+  "description": "Turns the picture into triangles whose sides follow its edges, each the average color under it (or smoothly shaded between its corners): small and many where there is detail, large where it is plain. File › Export as SVG keeps them as vectors.",
+  "group": "effects",
+  "name": "triangulate",
+  "parameters": {
+   "detail": {
+    "default": 50,
+    "description": "How fine the triangles are",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "edges": {
+    "default": 50,
+    "description": "How many of the picture's edges the triangles follow",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 42,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "shading": {
+    "default": "flat",
+    "description": "Each triangle one color, or blended between its corners",
+    "enum": [
+     "flat",
+     "smooth"
+    ],
+    "type": "string"
+   }
+  },
+  "title": "Triangulate",
+  "uses_selection": true
+ },
+ {
+  "description": "Raises the selection like a button: a soft bevel along its edge, lighter on the side facing the light and darker opposite. With nothing selected the whole picture becomes the button.",
+  "group": "effects",
+  "name": "buttonize",
+  "parameters": {
+   "angle": {
+    "default": 45,
+    "description": "Light from, degrees counter-clockwise from the right",
+    "maximum": 360,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "border": {
+    "default": 10,
+    "description": "Width of the beveled edge, pixels",
+    "maximum": 50,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "contrast": {
+    "default": 50,
+    "description": "How strong the light and shade are, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Buttonize",
+  "uses_selection": true
+ },
+ {
+  "description": "Cuts the selection out like a hole: the picture's edge casts a shadow into it, from the light's side. The inside is kept, filled with a color, or made transparent (only the shadow stays). With nothing selected it makes a 3D frame: a rim around the picture, the picture showing through the cut-out with the rim's shadow on it.",
+  "group": "effects",
+  "name": "cutout",
+  "parameters": {
+   "angle": {
+    "default": 45,
+    "description": "Light from, degrees: 0 the top, 90 the left, 45 the upper left",
+    "maximum": 360,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "blur": {
+    "default": 3,
+    "description": "How soft its edge is, pixels",
+    "maximum": 50,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "fill_color": {
+    "default": "#ffffff",
+    "description": "Color inside the hole",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "frame": {
+    "default": 7,
+    "description": "With nothing selected: the frame's width, % of the picture's short side",
+    "maximum": 30,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "frame_color": {
+    "default": "#f6f3ec",
+    "description": "With nothing selected: the frame's color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "interior": {
+    "default": "keep",
+    "description": "Inside the hole: the picture as it is, a color, or transparent",
+    "enum": [
+     "keep",
+     "fill",
+     "transparent"
+    ],
+    "type": "string"
+   },
+   "opacity": {
+    "default": 50,
+    "description": "How dark the shadow is, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "shadow_color": {
+    "default": "#000000",
+    "description": "Shadow color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "shift": {
+    "default": 10,
+    "description": "How far the shadow falls, pixels",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Cutout",
+  "uses_selection": true
+ },
+ {
+  "description": "Scatters pixels randomly within a window (frosted glass).",
+  "group": "effects",
+  "name": "scatter",
+  "parameters": {
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "tile": {
+    "default": 8,
+    "description": "Tile size, pixels",
+    "maximum": 64,
+    "minimum": 2,
+    "type": "integer"
+   }
+  },
+  "title": "Scatter",
+  "uses_selection": true
+ },
+ {
+  "description": "Reflections in curved mirrors, waves and whirlpools. Best applied to a selection.",
+  "group": "distort",
+  "name": "deform",
+  "parameters": {
+   "distortion": {
+    "default": 25,
+    "description": "Strength",
+    "maximum": 50,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "kind": {
+    "default": "elliptic_convex_mirror",
+    "description": "Deformation",
+    "enum": [
+     "elliptic_convex_mirror",
+     "elliptic_concave_mirror",
+     "cylindric_concave_vertical",
+     "cylindric_convex_vertical",
+     "cylindric_concave_horizontal",
+     "cylindric_convex_horizontal",
+     "horizontal_wave",
+     "vertical_wave",
+     "circular_wave",
+     "whirlpool_clockwise",
+     "whirlpool_counterclockwise"
+    ],
+    "type": "string"
+   },
+   "waves": {
+    "default": 10,
+    "description": "Number of waves (waves only)",
+    "maximum": 50,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Reflections",
+  "uses_selection": true
+ },
+ {
+  "description": "Fills the selection (or image) with a flat color.",
+  "group": "fill",
+  "name": "fill",
+  "parameters": {
+   "color": {
+    "default": "#ffffff",
+    "description": "Color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   }
+  },
+  "title": "Fill with color",
+  "uses_selection": true
+ },
+ {
+  "description": "Lays small pictures along strokes drawn on the picture, like a stamp brush: a set (flowers, leaves, grass, trees, fruit, vegetables, coffee, cookies, sport, chairs and sofas), each stamp over what is there by its own transparency. Each stroke [x, y, stroke number] point lists the path the pointer traced; a stamp lands where the stroke starts and then every Spacing pixels (straight distance from the last one). Style: constant (the chosen stamp), incremental (the chosen one, then the next), random, angular (by the stroke's direction).",
+  "group": "fill",
+  "name": "picture_hose",
+  "parameters": {
+   "angle_jitter": {
+    "default": 0,
+    "description": "Each stamp turned at random, up to this share of a half turn, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "opacity": {
+    "default": 100,
+    "description": "Opacity of the strokes, %",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "set": {
+    "default": "flowers",
+    "description": "The stamps",
+    "enum": [
+     "flowers",
+     "leaves1",
+     "leaves3",
+     "grass",
+     "trees1",
+     "trees3",
+     "fruits",
+     "vegetables",
+     "coffee",
+     "cookies",
+     "sport",
+     "chairs_and_sofas"
+    ],
+    "type": "string"
+   },
+   "size": {
+    "default": 100,
+    "description": "Size of the stamps, %",
+    "maximum": 300,
+    "minimum": 5,
+    "type": "integer"
+   },
+   "size_jitter": {
+    "default": 0,
+    "description": "Each stamp up to this much smaller, at random, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "spacing": {
+    "default": 100,
+    "description": "Distance between stamps, pixels",
+    "maximum": 250,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "stamp": {
+    "default": 1,
+    "description": "The stamp to start from (Constant and Incremental)",
+    "maximum": 12,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "strokes": {
+    "description": "Points [x, y, stroke] of the strokes, image pixels, in order",
+    "items": {
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 3,
+     "minItems": 3,
+     "type": "array"
+    },
+    "maxItems": 8192,
+    "minItems": 0,
+    "type": "array"
+   },
+   "style": {
+    "default": "incremental",
+    "description": "How each stamp is chosen",
+    "enum": [
+     "incremental",
+     "constant",
+     "random",
+     "angular"
+    ],
+    "type": "string"
+   }
+  },
+  "title": "Picture hose",
+  "uses_selection": true
+ },
+ {
+  "description": "Draws a line along the edge of the selection: its width in pixels, its color, and whether it sits on the edge, inside it or outside it. Needs a selection (a circle or rectangle around something, an underline).",
+  "group": "fill",
+  "name": "stroke",
+  "parameters": {
+   "color": {
+    "default": "#ff0000",
+    "description": "Color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "position": {
+    "default": "center",
+    "description": "center = on the edge, inside, outside",
+    "enum": [
+     "center",
+     "inside",
+     "outside"
+    ],
+    "type": "string"
+   },
+   "width": {
+    "default": 4,
+    "description": "Line width, pixels",
+    "maximum": 200,
+    "minimum": 1,
+    "type": "integer"
+   }
+  },
+  "title": "Stroke selection",
+  "uses_selection": true
+ },
+ {
+  "description": "Fills with a natural, grainy variation of a color.",
+  "group": "fill",
+  "name": "fill_fluctuated",
+  "parameters": {
+   "color": {
+    "default": "#00a6a6",
+    "description": "Color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "depth": {
+    "default": 50,
+    "description": "Variation, percent",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "grain": {
+    "default": 3,
+    "description": "Grain size, pixels",
+    "maximum": 16,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Fluctuated color",
+  "uses_selection": true
+ },
+ {
+  "description": "Fills with a gradient from one point to another, as the Gradient tool draws it: from the from color at the first point to the to color at the second; linear along the line, radial outward from the first point, reflected both ways from it.",
+  "group": "fill",
+  "name": "gradient_line",
+  "parameters": {
+   "from": {
+    "default": "#00a6a6",
+    "description": "Start color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "points": {
+    "description": "Start and end, pixels",
+    "items": {
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 2,
+     "minItems": 2,
+     "type": "array"
+    },
+    "maxItems": 2,
+    "minItems": 2,
+    "type": "array"
+   },
+   "shape": {
+    "default": "linear",
+    "description": "Gradient shape",
+    "enum": [
+     "linear",
+     "radial",
+     "reflected"
+    ],
+    "type": "string"
+   },
+   "to": {
+    "default": "#ffffff",
+    "description": "End color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   }
+  },
+  "title": "Gradient between points",
+  "uses_selection": true
+ },
+ {
+  "description": "Draws a shape between two points, as the Shape tool does: a rectangle, a rounded rectangle or an ellipse in the box the points span, or a line or an arrow (its head at the second point) from the first point to the second. Antialiased, with a stroke of the given width and color (a width of 0 draws no stroke on the closed shapes) and, with fill on, the inside in the fill color. For marking up a screenshot: a box around something, an arrow pointing at it.",
+  "group": "fill",
+  "name": "shape",
+  "parameters": {
+   "color": {
+    "default": "#ff0000",
+    "description": "Stroke color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "fill": {
+    "default": false,
+    "description": "Fill the inside (rectangle, rounded, ellipse)",
+    "type": "boolean"
+   },
+   "fill_color": {
+    "default": "#ffffff",
+    "description": "Fill color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "kind": {
+    "default": "rectangle",
+    "description": "The shape",
+    "enum": [
+     "rectangle",
+     "rounded",
+     "ellipse",
+     "line",
+     "arrow"
+    ],
+    "type": "string"
+   },
+   "points": {
+    "description": "Opposite corners of the box, or a line's start and end, pixels",
+    "items": {
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 2,
+     "minItems": 2,
+     "type": "array"
+    },
+    "maxItems": 2,
+    "minItems": 2,
+    "type": "array"
+   },
+   "radius": {
+    "default": 12,
+    "description": "rounded: corner radius, pixels",
+    "maximum": 500,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "width": {
+    "default": 4,
+    "description": "Stroke width, pixels (0 = no stroke)",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Shape",
+  "uses_selection": true
+ },
+ {
+  "description": "Mirrors the selection or image.",
+  "group": "image",
+  "name": "flip",
+  "parameters": {
+   "axis": {
+    "default": "horizontal",
+    "description": "horizontal = left-right",
+    "enum": [
+     "horizontal",
+     "vertical"
+    ],
+    "type": "string"
+   }
+  },
+  "title": "Flip",
+  "uses_selection": true
+ },
+ {
+  "description": "Changes the image size. Give width and/or height; a missing one keeps the proportions.",
+  "group": "image",
+  "name": "resize",
+  "parameters": {
+   "height": {
+    "default": 0,
+    "description": "New height (0 = from width)",
+    "maximum": 30000,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "width": {
+    "default": 0,
+    "description": "New width (0 = from height)",
+    "maximum": 30000,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Resize image",
+  "uses_selection": false
+ },
+ {
+  "description": "Adds a frame around the picture, the same width on every side, in the background color. On layers above the bottom one the frame is transparent.",
+  "group": "image",
+  "name": "border",
+  "parameters": {
+   "background": {
+    "default": "#ffffff",
+    "description": "Color of the border",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "size": {
+    "default": 20,
+    "description": "Border width on each side, pixels",
+    "maximum": 5000,
+    "minimum": 1,
+    "type": "integer"
+   }
+  },
+  "title": "Add border",
+  "uses_selection": false
+ },
+ {
+  "description": "Puts a textured frame and a mat around the picture, growing the canvas for them, on a new layer \"Frame\" with a hole over the picture: oak, walnut, cherry, maple, mahogany, ebony and driftwood, bark, frost, paper, agate, malachite, marble, granite and other materials, drawn for the frame's size in each texture's colors, each side its own piece meeting the next at a mitered corner, shaded so they look lit from the light's side; a mat in a color, with a beveled cut edge. Sizes are relative to the picture's long side (Small 1/32, Medium 1/16, Large 1/8).",
+  "group": "image",
+  "name": "frame",
+  "parameters": {
+   "frame": {
+    "default": "oak",
+    "description": "Frame texture: wood and nature (bark_1 … winter), paper (bonedry … rainform), stone (agate … stone), or none",
+    "enum": [
+     "none",
+     "oak",
+     "walnut",
+     "cherry",
+     "maple",
+     "mahogany",
+     "ebony",
+     "driftwood",
+     "bark_1",
+     "bark_2",
+     "frost",
+     "grains",
+     "grass",
+     "ice",
+     "pine",
+     "winter",
+     "bonedry",
+     "crinkle",
+     "crumple",
+     "green",
+     "mirage",
+     "mohave",
+     "rainform",
+     "agate",
+     "amethyst",
+     "anthracite",
+     "clay",
+     "granite",
+     "malachite",
+     "marble",
+     "stone"
+    ],
+    "type": "string"
+   },
+   "frame_size": {
+    "default": "small",
+    "description": "Frame width: 1/32, 1/16 or 1/8 of the long side",
+    "enum": [
+     "small",
+     "medium",
+     "large"
+    ],
+    "type": "string"
+   },
+   "light_from": {
+    "default": "top_left",
+    "description": "Light from",
+    "enum": [
+     "top_left",
+     "top_right",
+     "bottom_right",
+     "bottom_left",
+     "center"
+    ],
+    "type": "string"
+   },
+   "mat": {
+    "default": "plain",
+    "description": "Mat texture",
+    "enum": [
+     "bondery",
+     "bubbles",
+     "canvas",
+     "ceramc",
+     "clash",
+     "crumple",
+     "goldleaf",
+     "heatmap",
+     "leather",
+     "linen",
+     "mesh",
+     "oil",
+     "painting_1",
+     "painting_2",
+     "painting_3",
+     "plain",
+     "rainform",
+     "saw",
+     "scotch",
+     "shagreen",
+     "textile"
+    ],
+    "type": "string"
+   },
+   "mat_color": {
+    "default": "#ffffff",
+    "description": "Mat color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "mat_size": {
+    "default": "none",
+    "description": "Mat width: none, 1/32, 1/16 or 1/8 of the long side",
+    "enum": [
+     "none",
+     "small",
+     "medium",
+     "large"
+    ],
+    "type": "string"
+   },
+   "shape": {
+    "default": "flat",
+    "description": "The frame's profile",
+    "enum": [
+     "flat",
+     "notched",
+     "round"
+    ],
+    "type": "string"
+   }
+  },
+  "title": "Frames",
+  "uses_selection": false
+ },
+ {
+  "description": "Changes the canvas without resampling the picture: a new width and height (0 keeps one), with the picture kept at the anchor, so the canvas grows or is trimmed on the other sides. relative: width and height are pixels added (negative trims). New area is the background color on the bottom layer and transparent above.",
+  "group": "image",
+  "name": "canvas_size",
+  "parameters": {
+   "anchor": {
+    "default": "center",
+    "description": "Where the picture stays",
+    "enum": [
+     "top_left",
+     "top",
+     "top_right",
+     "left",
+     "center",
+     "right",
+     "bottom_left",
+     "bottom",
+     "bottom_right"
+    ],
+    "type": "string"
+   },
+   "background": {
+    "default": "#ffffff",
+    "description": "Color of new area",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "height": {
+    "default": 0,
+    "description": "New height, pixels (0 keeps it); with relative, pixels added",
+    "maximum": 30000,
+    "minimum": -30000,
+    "type": "integer"
+   },
+   "relative": {
+    "default": false,
+    "description": "Width and height are added to the current size",
+    "type": "boolean"
+   },
+   "width": {
+    "default": 0,
+    "description": "New width, pixels (0 keeps it); with relative, pixels added",
+    "maximum": 30000,
+    "minimum": -30000,
+    "type": "integer"
+   }
+  },
+  "title": "Canvas size",
+  "uses_selection": false
+ },
+ {
+  "description": "Rotates the whole image counter-clockwise; the canvas grows to fit.",
+  "group": "image",
+  "name": "rotate",
+  "parameters": {
+   "background": {
+    "default": "#ffffff",
+    "description": "Color of the uncovered corners",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "degrees": {
+    "default": 90.0,
+    "description": "Angle, counter-clockwise",
+    "maximum": 360.0,
+    "minimum": -360.0,
+    "type": "number"
+   }
+  },
+  "title": "Rotate image",
+  "uses_selection": false
+ },
+ {
+  "description": "Crops to a rectangle (or, with no rectangle, to the selection's bounds). angle turns the picture inside the crop (counter-clockwise, about the crop's center), to straighten while cropping.",
+  "group": "image",
+  "name": "crop",
+  "parameters": {
+   "angle": {
+    "default": 0.0,
+    "description": "Turn inside the crop, degrees counter-clockwise",
+    "maximum": 45.0,
+    "minimum": -45.0,
+    "type": "number"
+   },
+   "background": {
+    "default": "#ffffff",
+    "description": "Where the turned picture leaves gaps",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "height": {
+    "default": 0,
+    "description": "Height (0 = selection bounds)",
+    "maximum": 30000,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "out_height": {
+    "default": 0,
+    "description": "Then resize to this height (0 = as cropped)",
+    "maximum": 30000,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "out_width": {
+    "default": 0,
+    "description": "Then resize to this width (0 = as cropped)",
+    "maximum": 30000,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "width": {
+    "default": 0,
+    "description": "Width (0 = selection bounds)",
+    "maximum": 30000,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "x": {
+    "default": 0,
+    "description": "Left",
+    "maximum": 30000,
+    "minimum": -30000,
+    "type": "integer"
+   },
+   "y": {
+    "default": 0,
+    "description": "Top",
+    "maximum": 30000,
+    "minimum": -30000,
+    "type": "integer"
+   }
+  },
+  "title": "Crop",
+  "uses_selection": false
+ },
+ {
+  "description": "Softens the picture. gaussian: a smooth blur of `radius` pixels; box: averages each `size` x `size` window; focus: negative values sharpen, positive blur.",
+  "group": "filters",
+  "name": "blur",
+  "parameters": {
+   "focus": {
+    "default": -64,
+    "description": "focus: negative sharpens, positive blurs",
+    "maximum": 255,
+    "minimum": -255,
+    "type": "integer"
+   },
+   "method": {
+    "default": "gaussian",
+    "description": "How to blur",
+    "enum": [
+     "gaussian",
+     "box",
+     "focus"
+    ],
+    "type": "string"
+   },
+   "radius": {
+    "default": 2.0,
+    "description": "gaussian: radius (standard deviation), pixels",
+    "maximum": 100.0,
+    "minimum": 0.5,
+    "type": "number"
+   },
+   "size": {
+    "default": 3,
+    "description": "box: window, pixels",
+    "maximum": 15,
+    "minimum": 2,
+    "type": "integer"
+   }
+  },
+  "title": "Blur",
+  "uses_selection": true
+ },
+ {
+  "description": "Blurs along a straight line, as if the camera or the subject moved: each pixel becomes the average along distance pixels at angle degrees (counter-clockwise from horizontal).",
+  "group": "filters",
+  "name": "motion_blur",
+  "parameters": {
+   "angle": {
+    "default": 0,
+    "description": "Direction, degrees counter-clockwise from horizontal",
+    "maximum": 90,
+    "minimum": -90,
+    "type": "integer"
+   },
+   "distance": {
+    "default": 10,
+    "description": "Length of the movement, pixels",
+    "maximum": 999,
+    "minimum": 1,
+    "type": "integer"
+   }
+  },
+  "title": "Motion blur",
+  "uses_selection": true
+ },
+ {
+  "description": "Removes noise, specks and grain. edge_preserving (default): averages only similar neighbors, for the grain of a dark or high-ISO photo; edge_preserving_contrast: the same plus a contrast boost; median: removes specks, dust and scratches, keeping edges; specks: replaces only isolated outlier pixels; harmonic: removes bright specks, keeping dark detail.",
+  "group": "filters",
+  "name": "reduce_noise",
+  "parameters": {
+   "contrast": {
+    "default": 20,
+    "description": "edge_preserving_contrast: contrast boost, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "degree": {
+    "default": 35,
+    "description": "specks: how aggressive, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "gap": {
+    "default": 48,
+    "description": "specks, edge preserving: how many levels count as similar",
+    "maximum": 255,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "method": {
+    "default": "edge_preserving",
+    "description": "How to find and remove noise",
+    "enum": [
+     "median",
+     "specks",
+     "harmonic",
+     "edge_preserving",
+     "edge_preserving_contrast"
+    ],
+    "type": "string"
+   },
+   "size": {
+    "default": 3,
+    "description": "Window, pixels (median: at most 15)",
+    "maximum": 63,
+    "minimum": 2,
+    "type": "integer"
+   }
+  },
+  "title": "Reduce noise",
+  "uses_selection": true
+ },
+ {
+  "description": "Removes dust, specks and thin scratches, as on a scan: a pixel is replaced by the median of the square radius pixels around it, but only where it differs from that median by more than threshold. Raise radius until the dust goes, then threshold until the texture comes back.",
+  "group": "enhance",
+  "name": "dust_and_scratches",
+  "parameters": {
+   "radius": {
+    "default": 1,
+    "description": "Size of the specks to remove, pixels",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "threshold": {
+    "default": 0,
+    "description": "How different a pixel must be to count as dust",
+    "maximum": 255,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Dust & scratches",
+  "uses_selection": true
+ },
+ {
+  "description": "Remaps tones through a curve given by points [input, output] (0..255). Endpoints default to [0,0] and [255,255]; e.g. [[64,48],[192,208]] adds contrast. The smooth curve never overshoots its points. Channel luminosity changes lightness only, keeping colors.",
+  "group": "adjust",
+  "name": "curves",
+  "parameters": {
+   "channel": {
+    "default": "all",
+    "description": "Which channel the curve applies to",
+    "enum": [
+     "all",
+     "red",
+     "green",
+     "blue",
+     "luminosity"
+    ],
+    "type": "string"
+   },
+   "points": {
+    "description": "Curve points [input, output], 0..255",
+    "items": {
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 2,
+     "minItems": 2,
+     "type": "array"
+    },
+    "maxItems": 32,
+    "minItems": 0,
+    "type": "array"
+   },
+   "smooth": {
+    "default": true,
+    "description": "Smooth curve through the points (else straight segments)",
+    "type": "boolean"
+   }
+  },
+  "title": "Curves",
+  "uses_selection": true
+ },
+ {
+  "description": "Bends the selection with a grid: each move [x, y, dx, dy] drags the grid node nearest to (x, y), in image pixels, by (dx, dy).",
+  "group": "distort",
+  "name": "warp",
+  "parameters": {
+   "grid_x": {
+    "default": 3,
+    "description": "Interior vertical grid lines",
+    "maximum": 16,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "grid_y": {
+    "default": 3,
+    "description": "Interior horizontal grid lines",
+    "maximum": 16,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "moves": {
+    "description": "Node moves [x, y, dx, dy], image pixels",
+    "items": {
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 4,
+     "minItems": 4,
+     "type": "array"
+    },
+    "maxItems": 256,
+    "minItems": 0,
+    "type": "array"
+   }
+  },
+  "title": "Warp",
+  "uses_selection": true
+ },
+ {
+  "description": "Reshapes the picture by hand, as Photoshop's Liquify: Forward Warp pushes what is under the brush along a drag; Pucker draws it toward the brush's middle, Bloat away from it; Twirl turns it (clockwise or counterclockwise); Reconstruct brings back the original; Freeze protects an area from every later stroke, Thaw undoes that. Each stroke [tool, x, y, dx, dy] (tool: 0 forward warp, 1 pucker, 2 bloat, 3 twirl clockwise, 4 twirl counterclockwise, 5 reconstruct, 6 freeze, 7 thaw) runs from (x, y) by (dx, dy); all but the warp dab along it (once for a click). Strongest at the brush's middle, fading to nothing at its edge, scaled by pressure.",
+  "group": "distort",
+  "name": "liquify",
+  "parameters": {
+   "pressure": {
+    "default": 100,
+    "description": "How far of each push the picture moves, %",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "pushes": {
+    "description": "Forward Warp pushes [x, y, dx, dy], image pixels (before the strokes)",
+    "items": {
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 4,
+     "minItems": 4,
+     "type": "array"
+    },
+    "maxItems": 256,
+    "minItems": 0,
+    "type": "array"
+   },
+   "size": {
+    "default": 100,
+    "description": "Brush size, pixels",
+    "maximum": 500,
+    "minimum": 5,
+    "type": "integer"
+   },
+   "strokes": {
+    "description": "Strokes [tool, x, y, dx, dy], image pixels, in order",
+    "items": {
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 5,
+     "minItems": 5,
+     "type": "array"
+    },
+    "maxItems": 512,
+    "minItems": 0,
+    "type": "array"
+   },
+   "tool": {
+    "default": "push",
+    "description": "The tool the next drags on the picture use",
+    "enum": [
+     "push",
+     "pucker",
+     "bloat",
+     "twirl_clockwise",
+     "twirl_counterclockwise",
+     "reconstruct",
+     "freeze",
+     "thaw"
+    ],
+    "type": "string"
+   }
+  },
+  "title": "Liquify",
+  "uses_selection": true
+ },
+ {
+  "description": "Grabs the point (from_x, from_y) and stretches the selection like rubber so it lands on (to_x, to_y).",
+  "group": "distort",
+  "name": "rubber",
+  "parameters": {
+   "from_x": {
+    "default": 0,
+    "description": "Grabbed point, x",
+    "maximum": 30000,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "from_y": {
+    "default": 0,
+    "description": "Grabbed point, y",
+    "maximum": 30000,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "shape": {
+    "default": "rectangle",
+    "description": "Shape of the stretched area",
+    "enum": [
+     "rectangle",
+     "ellipse"
+    ],
+    "type": "string"
+   },
+   "to_x": {
+    "default": 0,
+    "description": "Where it goes, x",
+    "maximum": 30000,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "to_y": {
+    "default": 0,
+    "description": "Where it goes, y",
+    "maximum": 30000,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Rubber",
+  "uses_selection": true
+ },
+ {
+  "description": "Displaces pixels by a profile you draw: points [position 0..255, displacement -128..127], interpolated in between.",
+  "group": "distort",
+  "name": "custom_deform",
+  "parameters": {
+   "direction": {
+    "default": "radial",
+    "description": "Along which axis the profile runs",
+    "enum": [
+     "radial",
+     "horizontal",
+     "vertical",
+     "left_to_right",
+     "bottom_to_top"
+    ],
+    "type": "string"
+   },
+   "profile": {
+    "description": "Profile points [position, displacement]",
+    "items": {
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 2,
+     "minItems": 2,
+     "type": "array"
+    },
+    "maxItems": 64,
+    "minItems": 0,
+    "type": "array"
+   },
+   "strength": {
+    "default": 64,
+    "description": "Strength",
+    "maximum": 256,
+    "minimum": 10,
+    "type": "integer"
+   }
+  },
+  "title": "Custom deformation",
+  "uses_selection": true
+ },
+ {
+  "description": "Pixel arithmetic with another open image of the same size.",
+  "group": "combine",
+  "name": "calculate",
+  "parameters": {
+   "offset": {
+    "default": 0,
+    "description": "Added to add/subtract results",
+    "maximum": 255,
+    "minimum": -255,
+    "type": "integer"
+   },
+   "operation": {
+    "default": "add",
+    "description": "Operation",
+    "enum": [
+     "add",
+     "subtract",
+     "multiply",
+     "difference",
+     "lighter",
+     "darker",
+     "blend"
+    ],
+    "type": "string"
+   },
+   "other": {
+    "description": "Second operand (id of an open image)",
+    "type": "string"
+   },
+   "percent": {
+    "default": 50,
+    "description": "Blend: share of this image, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Image calculator",
+  "uses_selection": true
+ },
+ {
+  "description": "Joins another open image to this one (panoramas, side-by-side comparisons). The image grows to fit both.",
+  "group": "combine",
+  "name": "stitch",
+  "parameters": {
+   "background": {
+    "default": "#ffffff",
+    "description": "Color of uncovered areas",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "offset": {
+    "default": 0,
+    "description": "Shift along the joined edge, pixels",
+    "maximum": 30000,
+    "minimum": -30000,
+    "type": "integer"
+   },
+   "other": {
+    "description": "Image to attach (id of an open image)",
+    "type": "string"
+   },
+   "overlap": {
+    "default": 0,
+    "description": "Overlap, pixels",
+    "maximum": 30000,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "side": {
+    "default": "right",
+    "description": "Where the other image goes",
+    "enum": [
+     "right",
+     "below",
+     "left",
+     "above"
+    ],
+    "type": "string"
+   },
+   "transparency": {
+    "default": 0,
+    "description": "Transparency of the attached image where they overlap, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Stitch",
+  "uses_selection": false
+ },
+ {
+  "description": "Builds a color image from three grayscale images used as channels (R,G,B or H,S,V or C,M,Y); replaces this image.",
+  "group": "combine",
+  "name": "combine_channels",
+  "parameters": {
+   "first": {
+    "description": "Red / hue / cyan channel (id of an open image)",
+    "type": "string"
+   },
+   "model": {
+    "default": "rgb",
+    "description": "Color model",
+    "enum": [
+     "rgb",
+     "hsv",
+     "cmy"
+    ],
+    "type": "string"
+   },
+   "second": {
+    "description": "Green / saturation / magenta channel (id of an open image)",
+    "type": "string"
+   },
+   "third": {
+    "description": "Blue / value / yellow channel (id of an open image)",
+    "type": "string"
+   }
+  },
+  "title": "Combine channels",
+  "uses_selection": false
+ },
+ {
+  "description": "Reduces each color channel to a few flat levels, poster-like.",
+  "group": "artistic",
+  "name": "posterize",
+  "parameters": {
+   "levels": {
+    "default": 6,
+    "description": "Levels per channel",
+    "maximum": 64,
+    "minimum": 2,
+    "type": "integer"
+   }
+  },
+  "title": "Posterize",
+  "uses_selection": true
+ },
+ {
+  "description": "Turns the picture into raised square tiles with beveled edges.",
+  "group": "artistic",
+  "name": "mosaic_3d",
+  "parameters": {
+   "border": {
+    "default": 3,
+    "description": "Bevel width, pixels",
+    "maximum": 16,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "defect": {
+    "default": 0,
+    "description": "Irregularity of the edges",
+    "maximum": 16,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "relief": {
+    "default": 5,
+    "description": "Bevel depth",
+    "maximum": 32,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "tile": {
+    "default": 10,
+    "description": "Tile size, pixels",
+    "maximum": 32,
+    "minimum": 2,
+    "type": "integer"
+   }
+  },
+  "title": "3D mosaic",
+  "uses_selection": true
+ },
+ {
+  "description": "Explodes the picture outward from the center in sharp, star-like spikes.",
+  "group": "accidents",
+  "name": "burst",
+  "parameters": {
+   "dispersion": {
+    "default": 50,
+    "description": "Spread of the peaks, %",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "maximum": {
+    "default": 50,
+    "description": "Largest displacement, pixels",
+    "maximum": 200,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "peaks": {
+    "default": 16,
+    "description": "Number of peaks",
+    "maximum": 1000,
+    "minimum": 4,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Burst",
+  "uses_selection": true
+ },
+ {
+  "description": "Like burst, but with rounded, petal-like lobes.",
+  "group": "accidents",
+  "name": "blot",
+  "parameters": {
+   "dispersion": {
+    "default": 50,
+    "description": "Spread of the peaks, %",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "maximum": {
+    "default": 50,
+    "description": "Largest displacement, pixels",
+    "maximum": 200,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "peaks": {
+    "default": 16,
+    "description": "Number of peaks",
+    "maximum": 1000,
+    "minimum": 4,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Blot",
+  "uses_selection": true
+ },
+ {
+  "description": "The picture collapses inward toward the center in sharp spikes.",
+  "group": "accidents",
+  "name": "earthquake",
+  "parameters": {
+   "dispersion": {
+    "default": 50,
+    "description": "Spread of the peaks, %",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "maximum": {
+    "default": 50,
+    "description": "Largest displacement, pixels",
+    "maximum": 200,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "peaks": {
+    "default": 16,
+    "description": "Number of peaks",
+    "maximum": 1000,
+    "minimum": 4,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Earthquake",
+  "uses_selection": true
+ },
+ {
+  "description": "The picture collapses inward in rounded lobes, as if sinking.",
+  "group": "accidents",
+  "name": "quicksands",
+  "parameters": {
+   "dispersion": {
+    "default": 50,
+    "description": "Spread of the peaks, %",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "maximum": {
+    "default": 50,
+    "description": "Largest displacement, pixels",
+    "maximum": 200,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "peaks": {
+    "default": 16,
+    "description": "Number of peaks",
+    "maximum": 1000,
+    "minimum": 4,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Quicksands",
+  "uses_selection": true
+ },
+ {
+  "description": "The picture bursts outward from its middle: smeared along uneven rays, blown out toward the edges, with droplets of color flung past the burst.",
+  "group": "accidents",
+  "name": "splash",
+  "parameters": {
+   "droplets": {
+    "default": 40,
+    "description": "How many droplets are flung out",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "size": {
+    "default": 60,
+    "description": "How far the burst reaches, % of the area",
+    "maximum": 200,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "streaks": {
+    "default": 60,
+    "description": "How uneven the rays are",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Splash",
+  "uses_selection": true
+ },
+ {
+  "description": "A black hole in the middle of the picture: the picture bent around it as gravity bends light (turned over in a ring hugging it), swirled around it, with a bright ring of light at its edge.",
+  "group": "accidents",
+  "name": "black_hole",
+  "parameters": {
+   "pull": {
+    "default": 60,
+    "description": "How strongly it bends the picture",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "ring": {
+    "default": 40,
+    "description": "How bright the ring of light around it is",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "size": {
+    "default": 15,
+    "description": "Size of the black hole, % of the area's shorter side",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "swirl": {
+    "default": 50,
+    "description": "How much it turns the picture around itself",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Black hole",
+  "uses_selection": true
+ },
+ {
+  "description": "Paints the picture in watercolor, in its own colors: transparent washes over white paper (the lightest areas are the paper), keeping to the picture's edges and bleeding into each other where wet, blooms with ragged dark edges, darker where a wash dried, pigment settling in the paper's grain.",
+  "group": "artistic",
+  "name": "watercolor",
+  "parameters": {
+   "edges": {
+    "default": 50,
+    "description": "How dark the dried edges of the washes are",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "granulation": {
+    "default": 50,
+    "description": "How much pigment settles into the paper's grain",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "paper": {
+    "default": 50,
+    "description": "How much the paper's texture shows",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "size": {
+    "default": 0,
+    "description": "Size of the washes, pixels (0: from the picture's size)",
+    "maximum": 40,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "wetness": {
+    "default": 50,
+    "description": "How wet: bleeding between washes, and blooms",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Watercolor",
+  "uses_selection": true
+ },
+ {
+  "description": "Draws the picture in soft chalk pastel: blended diagonal strokes that keep the edges, lighter softer color, the paper's grain showing through.",
+  "group": "artistic",
+  "name": "pastel",
+  "parameters": {
+   "detail": {
+    "default": 50,
+    "description": "How much of the picture's detail the chalk keeps",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "paper": {
+    "default": 50,
+    "description": "How much the paper's tooth shows through the chalk",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "size": {
+    "default": 0,
+    "description": "Width of the strokes, pixels (0: from the picture's size)",
+    "maximum": 40,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "strength": {
+    "default": 100,
+    "description": "How much of the result replaces the picture",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Pastel",
+  "uses_selection": true
+ },
+ {
+  "description": "Draws the picture with wax crayons: strokes in one direction with visible hatching, flat saturated color across each stroke, dark areas gone over again at other angles, the paper showing through.",
+  "group": "artistic",
+  "name": "crayons",
+  "parameters": {
+   "angle": {
+    "default": 45,
+    "description": "Direction of the strokes, degrees",
+    "maximum": 90,
+    "minimum": -90,
+    "type": "integer"
+   },
+   "length": {
+    "default": 40,
+    "description": "How long the strokes are",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "paper": {
+    "default": 50,
+    "description": "How much the paper's tooth breaks up the wax",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "pressure": {
+    "default": 60,
+    "description": "How hard the crayon is pressed: how much wax",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "size": {
+    "default": 0,
+    "description": "Width of the strokes, pixels (0: from the picture's size)",
+    "maximum": 40,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "strength": {
+    "default": 100,
+    "description": "How much of the result replaces the picture",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Crayons",
+  "uses_selection": true
+ },
+ {
+  "description": "Paint runs downward as if the picture were wet.",
+  "group": "artistic",
+  "name": "gravity",
+  "parameters": {
+   "angle": {
+    "default": 0,
+    "description": "Direction, degrees (wash out only)",
+    "maximum": 180,
+    "minimum": -180,
+    "type": "integer"
+   },
+   "density": {
+    "default": 16,
+    "description": "Number of drips, %",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "density_var": {
+    "default": 16,
+    "description": "Variation of density, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "strength": {
+    "default": 50,
+    "description": "Length of drips, %; negative runs upward (gravity only)",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "strength_var": {
+    "default": 50,
+    "description": "Variation of length, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "toward_left": {
+    "default": false,
+    "description": "Wind: blow toward the left",
+    "type": "boolean"
+   }
+  },
+  "title": "Running paint: drips",
+  "uses_selection": true
+ },
+ {
+  "description": "Wet paint is blown sideways.",
+  "group": "artistic",
+  "name": "wind",
+  "parameters": {
+   "angle": {
+    "default": 0,
+    "description": "Direction, degrees (wash out only)",
+    "maximum": 180,
+    "minimum": -180,
+    "type": "integer"
+   },
+   "density": {
+    "default": 16,
+    "description": "Number of drips, %",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "density_var": {
+    "default": 16,
+    "description": "Variation of density, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "strength": {
+    "default": 50,
+    "description": "Length of drips, %; negative runs upward (gravity only)",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "strength_var": {
+    "default": 50,
+    "description": "Variation of length, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "toward_left": {
+    "default": false,
+    "description": "Wind: blow toward the left",
+    "type": "boolean"
+   }
+  },
+  "title": "Running paint: wind",
+  "uses_selection": true
+ },
+ {
+  "description": "Paint is washed away in a direction, leaving streaks.",
+  "group": "artistic",
+  "name": "wash_out",
+  "parameters": {
+   "angle": {
+    "default": 0,
+    "description": "Direction, degrees (wash out only)",
+    "maximum": 180,
+    "minimum": -180,
+    "type": "integer"
+   },
+   "density": {
+    "default": 16,
+    "description": "Number of drips, %",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "density_var": {
+    "default": 16,
+    "description": "Variation of density, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "strength": {
+    "default": 50,
+    "description": "Length of drips, %; negative runs upward (gravity only)",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "strength_var": {
+    "default": 50,
+    "description": "Variation of length, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "toward_left": {
+    "default": false,
+    "description": "Wind: blow toward the left",
+    "type": "boolean"
+   }
+  },
+  "title": "Running paint: wash out",
+  "uses_selection": true
+ },
+ {
+  "description": "Pixels fly off in a direction like a sandstorm.",
+  "group": "artistic",
+  "name": "pixel_storm",
+  "parameters": {
+   "angle": {
+    "default": 0,
+    "description": "Direction, degrees",
+    "maximum": 180,
+    "minimum": -180,
+    "type": "integer"
+   },
+   "involve": {
+    "default": 50,
+    "description": "Share of pixels involved, %",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "strength": {
+    "default": 16,
+    "description": "Distance, pixels",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "variation": {
+    "default": 16,
+    "description": "Variation, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Pixel storm",
+  "uses_selection": true
+ },
+ {
+  "description": "Rebuilds the picture from embossed patches, like a quilt or collage.",
+  "group": "artistic",
+  "name": "patches",
+  "parameters": {
+   "angle": {
+    "default": 0,
+    "description": "Angle, degrees",
+    "maximum": 180,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "aspect": {
+    "default": 100,
+    "description": "Width relative to length, %",
+    "maximum": 100,
+    "minimum": 5,
+    "type": "integer"
+   },
+   "auto_angle": {
+    "default": false,
+    "description": "Follow the picture's edges",
+    "type": "boolean"
+   },
+   "depth": {
+    "default": 3,
+    "description": "Emboss depth",
+    "maximum": 10,
+    "minimum": 2,
+    "type": "integer"
+   },
+   "random": {
+    "default": 100,
+    "description": "Randomness, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "shape": {
+    "default": "elliptic",
+    "description": "Patch shape",
+    "enum": [
+     "elliptic",
+     "double_elliptic",
+     "rectangular"
+    ],
+    "type": "string"
+   },
+   "size": {
+    "default": 20,
+    "description": "Patch size, pixels",
+    "maximum": 128,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "step": {
+    "default": 10,
+    "description": "Distance between patches, pixels",
+    "maximum": 128,
+    "minimum": 1,
+    "type": "integer"
+   }
+  },
+  "title": "Patches",
+  "uses_selection": true
+ },
+ {
+  "description": "Overlays a surface texture: canvas, cracks, tile mosaic, quilted padding, noise or slate.",
+  "group": "texture",
+  "name": "texture",
+  "parameters": {
+   "kind": {
+    "default": "canvas",
+    "description": "Texture",
+    "enum": [
+     "canvas",
+     "cracks",
+     "mosaic",
+     "padding",
+     "noise",
+     "slate"
+    ],
+    "type": "string"
+   },
+   "scale": {
+    "default": 100,
+    "description": "Size, % of the texture's own",
+    "maximum": 400,
+    "minimum": 25,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "strength": {
+    "default": 100,
+    "description": "Relief, % of the texture's own; 0 = none",
+    "maximum": 200,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Texture",
+  "uses_selection": true
+ },
+ {
+  "description": "Rings spreading on still water from the middle of the picture, seen at a slant, the picture seen as its reflection on them: moved along each ring's slope, slopes facing the light lighter, the crests glinting; calm at the very middle, fading outward.",
+  "group": "distort",
+  "name": "pond_ripples",
+  "parameters": {
+   "height": {
+    "default": 50,
+    "description": "How high the waves are",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "rings": {
+    "default": 14,
+    "description": "How many rings fit from the middle to a corner",
+    "maximum": 60,
+    "minimum": 2,
+    "type": "integer"
+   },
+   "shine": {
+    "default": 50,
+    "description": "How much the water catches the light",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "spread": {
+    "default": 60,
+    "description": "How far the rings reach before they fade",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "tilt": {
+    "default": 55,
+    "description": "How flat the water is seen: 0 from above (round rings)",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Pond ripples",
+  "uses_selection": true
+ },
+ {
+  "description": "The picture as seen through a window with frost on it: frost grows from the edges and corners and thins toward the middle, blurring and bending the picture and whitening it cold with feathery crystals, while the middle and strokes of a finger stay clear.",
+  "group": "distort",
+  "name": "frost",
+  "parameters": {
+   "chill": {
+    "default": 60,
+    "description": "How cold and blue the frost is",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "clear": {
+    "default": 30,
+    "description": "How far the middle is clear of frost (0: frost all over)",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "frost": {
+    "default": 64,
+    "description": "How much frost",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "size": {
+    "default": 0,
+    "description": "Width of the crystals, pixels (0: from the picture's size)",
+    "maximum": 80,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "wipes": {
+    "default": 30,
+    "description": "How many strokes of a finger have wiped the glass",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Frosted window",
+  "uses_selection": true
+ },
+ {
+  "description": "The picture as seen through hammered, rippled glass: the glass is a field of lenses, so the picture is bent and smeared along the ripples, liquid-looking, while the surface catches the light with glints along the crests; the ripples can be drawn out into long streaks running down the glass.",
+  "group": "distort",
+  "name": "rippled_glass",
+  "parameters": {
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "shine": {
+    "default": 40,
+    "description": "How much the glass catches the light",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "size": {
+    "default": 0,
+    "description": "Size of the ripples, pixels (0: from the picture's size)",
+    "maximum": 200,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "strength": {
+    "default": 50,
+    "description": "How far the glass bends the picture",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "stretch": {
+    "default": 30,
+    "description": "How much the ripples are drawn out into streaks running down the glass (0: round)",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Rippled glass",
+  "uses_selection": true
+ },
+ {
+  "description": "The picture as seen through a window with rain on it: drops of many sizes, each a small lens showing the sharp picture behind it turned over, some trickled down leaving wavy trails of clear glass, the rest of the glass misted. Streams make the glass flooded: long rivulets run down it as thin clear lenses, a sheet of water smears the picture downward, and the streams bend the picture's geometry around them.",
+  "group": "distort",
+  "name": "rain",
+  "parameters": {
+   "drops": {
+    "default": 50,
+    "description": "How many drops",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "flood": {
+    "default": 50,
+    "description": "How flooded the glass is: a sheet of water that smears the picture downward",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "mist": {
+    "default": 50,
+    "description": "How misted the glass is between the drops",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "size": {
+    "default": 0,
+    "description": "Size of the large drops, pixels (0: from the picture's size)",
+    "maximum": 80,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "streams": {
+    "default": 55,
+    "description": "How many long rivulets run down the glass",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "trickles": {
+    "default": 40,
+    "description": "How many drops have run down",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "warp": {
+    "default": 50,
+    "description": "How much the streams bend the picture's geometry around them",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Rain",
+  "uses_selection": true
+ },
+ {
+  "description": "The picture as seen through textured glass, as Photoshop's Glass: frosted, glass blocks, canvas or tiny lenses, generated (frosted and blocks never repeat), the picture bent along the glass's slope.",
+  "group": "distort",
+  "name": "glass",
+  "parameters": {
+   "distortion": {
+    "default": 5,
+    "description": "How strongly the glass bends the picture",
+    "maximum": 20,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "invert_surface": {
+    "default": false,
+    "description": "Hollows for bumps",
+    "type": "boolean"
+   },
+   "scaling": {
+    "default": 100,
+    "description": "Size of the texture, %",
+    "maximum": 200,
+    "minimum": 50,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "smoothness": {
+    "default": 3,
+    "description": "How smooth the glass is",
+    "maximum": 15,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "surface": {
+    "default": "frosted",
+    "description": "The glass's texture",
+    "enum": [
+     "frosted",
+     "blocks",
+     "canvas",
+     "tiny_lens"
+    ],
+    "type": "string"
+   }
+  },
+  "title": "Glass",
+  "uses_selection": true
+ },
+ {
+  "description": "The picture as areas of flat color: Matisse (as his Fauvist paintings and cut-outs: few areas in bold, nearly pure colors, shadows violet and blue, no outlines), Tarkay (more areas in rich jewel tones, each held by a dark contour) Hokusai (an ukiyo-e woodblock print: muted pigments, thin ink lines, graded skies, paper grain) Lichtenstein (pop art: primaries, Ben-Day dots, thick black outlines) Mondrian (rectangles of white, grey, black and primaries in black bars) or Warhol (a silkscreen: four flat tones in bold colors, black ink off register).",
+  "group": "artistic",
+  "name": "flat_color",
+  "parameters": {
+   "colors": {
+    "default": 0,
+    "description": "How many colors (0: the style's own)",
+    "maximum": 24,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "outline": {
+    "default": 3,
+    "description": "Width of the outlines (Tarkay)",
+    "maximum": 10,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "simplify": {
+    "default": 4,
+    "description": "How much the shapes are simplified",
+    "maximum": 10,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "style": {
+    "default": "matisse",
+    "description": "In the style of",
+    "enum": [
+     "matisse",
+     "tarkay",
+     "hokusai",
+     "lichtenstein",
+     "mondrian",
+     "warhol"
+    ],
+    "type": "string"
+   },
+   "vivid": {
+    "default": 60,
+    "description": "How vivid the colors are",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Flat color",
+  "uses_selection": true
+ },
+ {
+  "description": "Paints the picture with brush strokes: Impressionist (as Monet: short broken dabs of shifting color in layers), Pointillist (as Seurat: dots of pure pigments that the eye mixes) Van Gogh (long swirling strokes in strong color, thick impasto) Cézanne (short parallel strokes in patches, warm lights and cool shadows) Signac (larger oblong dabs of pure pigments, like a mosaic) Munch (long rolling bands of intensified color, dark contours) or Turner (watercolor: soft washes, darker rims, granulation, golden light), the strokes following the picture's shapes, the paint's relief lit from the upper left.",
+  "group": "artistic",
+  "name": "painting",
+  "parameters": {
+   "brush": {
+    "default": 0,
+    "description": "Brush size, pixels (0: from the picture's size)",
+    "maximum": 64,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "color": {
+    "default": 50,
+    "description": "How vivid the paint is",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "detail": {
+    "default": 50,
+    "description": "How closely the finer strokes follow the picture",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "relief": {
+    "default": 50,
+    "description": "Thickness of the paint",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "style": {
+    "default": "impressionist",
+    "description": "Painter whose way of painting is followed",
+    "enum": [
+     "impressionist",
+     "pointillist",
+     "van_gogh",
+     "cezanne",
+     "signac",
+     "munch",
+     "turner"
+    ],
+    "type": "string"
+   }
+  },
+  "title": "Painting",
+  "uses_selection": true
+ },
+ {
+  "description": "Lays the picture in mosaic tiles, as Photoshop's Mosaic Tiles: squarish tiles in courses that follow the picture's edges, each the color under it, set in grout; none alike, nothing repeating.",
+  "group": "texture",
+  "name": "mosaic_tiles",
+  "parameters": {
+   "grout_width": {
+    "default": 2,
+    "description": "Width of the grout between them, pixels",
+    "maximum": 15,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "lighten_grout": {
+    "default": 9,
+    "description": "How light the grout is",
+    "maximum": 10,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "tile_size": {
+    "default": 18,
+    "description": "Size of the tiles, pixels",
+    "maximum": 100,
+    "minimum": 2,
+    "type": "integer"
+   }
+  },
+  "title": "Mosaic tiles",
+  "uses_selection": true
+ },
+ {
+  "description": "The crack network of old paint over the picture, as Photoshop's Craquelure: irregular cracks that never repeat around slightly raised islands of paint, with a finer network in places.",
+  "group": "texture",
+  "name": "craquelure",
+  "parameters": {
+   "crack_brightness": {
+    "default": 9,
+    "description": "How light the cracks are",
+    "maximum": 10,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "crack_depth": {
+    "default": 6,
+    "description": "How deep and wide the cracks are",
+    "maximum": 10,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "crack_spacing": {
+    "default": 15,
+    "description": "Size of the islands between cracks, pixels",
+    "maximum": 100,
+    "minimum": 2,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Craquelure",
+  "uses_selection": true
+ },
+ {
+  "description": "Fills with a color modulated by a natural pattern: fluctuated (grain), fractured (random grain cells), eroded, fractal clouds or complex fractal.",
+  "group": "fill",
+  "name": "fill_texture",
+  "parameters": {
+   "color": {
+    "default": "#808080",
+    "description": "Color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "depth": {
+    "default": 50,
+    "description": "Strength of the pattern, %",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "method": {
+    "default": "fractal",
+    "description": "Pattern",
+    "enum": [
+     "fluctuated",
+     "fractured",
+     "eroded",
+     "fractal",
+     "complex_fractal"
+    ],
+    "type": "string"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Fill with textured color",
+  "uses_selection": true
+ },
+ {
+  "description": "Fills with a smooth transition between two colors.",
+  "group": "fill",
+  "name": "gradient",
+  "parameters": {
+   "angle": {
+    "default": 45,
+    "description": "Direction for `angle`, degrees counter-clockwise from the right",
+    "maximum": 359,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "direction": {
+    "default": "vertical",
+    "description": "vertical goes bottom to top, horizontal left to right, radial/elliptic center outward, angle uses `angle`, fractal is cloudy",
+    "enum": [
+     "vertical",
+     "horizontal",
+     "radial",
+     "elliptic",
+     "angle",
+     "fractal"
+    ],
+    "type": "string"
+   },
+   "from": {
+    "default": "#000000",
+    "description": "Start color (bottom, left or center)",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "to": {
+    "default": "#ffffff",
+    "description": "End color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   }
+  },
+  "title": "Gradient",
+  "uses_selection": true
+ },
+ {
+  "description": "Fills with the spectrum of colors, in any gradient shape.",
+  "group": "fill",
+  "name": "rainbow",
+  "parameters": {
+   "angle": {
+    "default": 45,
+    "description": "Direction for `angle`, degrees",
+    "maximum": 359,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "direction": {
+    "default": "vertical",
+    "description": "vertical goes bottom to top, horizontal left to right, radial/elliptic center outward, angle uses `angle`, fractal is cloudy",
+    "enum": [
+     "vertical",
+     "horizontal",
+     "radial",
+     "elliptic",
+     "angle",
+     "fractal"
+    ],
+    "type": "string"
+   },
+   "paleness": {
+    "default": 90,
+    "description": "Higher = paler, pastel colors",
+    "maximum": 180,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Rainbow",
+  "uses_selection": true
+ },
+ {
+  "description": "Repaints the picture in oil, respecting its edges: paint flattened into patches that stretch along the shapes and never run over an edge, bristle streaks following the shapes, and raised paint lit from the upper left.",
+  "group": "artistic",
+  "name": "oil_paint",
+  "parameters": {
+   "bristles": {
+    "default": 50,
+    "description": "How strong the bristle streaks are, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "relief": {
+    "default": 50,
+    "description": "How raised the paint looks, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "size": {
+    "default": 0,
+    "description": "Brush size, pixels (0: from the picture's size)",
+    "maximum": 40,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Oil paint",
+  "uses_selection": true
+ },
+ {
+  "description": "Repaints the picture in gouache, respecting its edges: opaque, matte paint in flat areas that keep to the picture's edges, a little chalky, strokes showing in the color and a faint paper grain.",
+  "group": "artistic",
+  "name": "gouache",
+  "parameters": {
+   "flatness": {
+    "default": 50,
+    "description": "How far the tones are gathered into flat areas, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "size": {
+    "default": 0,
+    "description": "Brush size, pixels (0: from the picture's size)",
+    "maximum": 40,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "strokes": {
+    "default": 50,
+    "description": "How visible the strokes are, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Gouache",
+  "uses_selection": true
+ },
+ {
+  "description": "Turns the picture into a pen-hatched engraving, in black and white or in an 8-color look.",
+  "group": "artistic",
+  "name": "graphic_pen",
+  "parameters": {
+   "angle": {
+    "default": 45,
+    "description": "Stroke angle, degrees",
+    "maximum": 180,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "ink": {
+    "default": "black_and_white",
+    "description": "Ink",
+    "enum": [
+     "black_and_white",
+     "color"
+    ],
+    "type": "string"
+   },
+   "seed": {
+    "default": 1234,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "stroke_length": {
+    "default": 16,
+    "description": "Stroke length, pixels",
+    "maximum": 64,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "threshold": {
+    "default": 128,
+    "description": "Darkness above which strokes are drawn",
+    "maximum": 255,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Graphic pen",
+  "uses_selection": true
+ },
+ {
+  "description": "Gray relief, as if the picture were pressed into clay.",
+  "group": "artistic",
+  "name": "relief",
+  "parameters": {
+   "contrast": {
+    "default": 16,
+    "description": "Depth",
+    "maximum": 32,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "size": {
+    "default": 3,
+    "description": "Window size in pixels (odd; even values round up)",
+    "maximum": 63,
+    "minimum": 3,
+    "type": "integer"
+   }
+  },
+  "title": "Relief",
+  "uses_selection": true
+ },
+ {
+  "description": "Relief that keeps the picture's colors.",
+  "group": "artistic",
+  "name": "color_relief",
+  "parameters": {
+   "contrast": {
+    "default": 16,
+    "description": "Depth",
+    "maximum": 32,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "size": {
+    "default": 3,
+    "description": "Window size in pixels (odd; even values round up)",
+    "maximum": 63,
+    "minimum": 3,
+    "type": "integer"
+   }
+  },
+  "title": "Color relief",
+  "uses_selection": true
+ },
+ {
+  "description": "Coats the picture in wax of a color: each pixel is mixed with the color by coating percent, then darkened along the picture's edges, where the wax gathers.",
+  "group": "artistic",
+  "name": "hot_wax",
+  "parameters": {
+   "coating": {
+    "default": 50,
+    "description": "How much of the wax color, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "color": {
+    "default": "#000000",
+    "description": "Wax color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   }
+  },
+  "title": "Hot wax",
+  "uses_selection": true
+ },
+ {
+  "description": "Curls a corner of the picture (or selection) like a page being turned.",
+  "group": "artistic",
+  "name": "page_curl",
+  "parameters": {
+   "amount": {
+    "default": 25,
+    "description": "How far the page is curled, %",
+    "maximum": 99,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "background": {
+    "default": "#ffffff",
+    "description": "Color revealed under the curl",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "corner": {
+    "default": "bottom_right_from_top",
+    "description": "Which corner curls, and from which side",
+    "enum": [
+     "top_left_from_bottom",
+     "top_left_from_right",
+     "bottom_left_from_right",
+     "bottom_left_from_top",
+     "top_right_from_bottom",
+     "top_right_from_left",
+     "bottom_right_from_left",
+     "bottom_right_from_top"
+    ],
+    "type": "string"
+   }
+  },
+  "title": "Page curl",
+  "uses_selection": true
+ },
+ {
+  "description": "Organic random distortion: excitation (jelly-like wobble), erosion (ragged, eaten edges) or ripples (water surface).",
+  "group": "distort",
+  "name": "random_deform",
+  "parameters": {
+   "depth": {
+    "default": 50,
+    "description": "Strength, %",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "grain": {
+    "default": 0,
+    "description": "Grain size, pixels; 0 = the kind's default (8, 7 or 32)",
+    "maximum": 64,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "kind": {
+    "default": "excitation",
+    "description": "Kind",
+    "enum": [
+     "excitation",
+     "erosion",
+     "ripples"
+    ],
+    "type": "string"
+   },
+   "seed": {
+    "default": 12456,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Random deformation",
+  "uses_selection": true
+ },
+ {
+  "description": "Geometric distortion of the selection: whirl, wave, concave or convex lens.",
+  "group": "distort",
+  "name": "pure_deform",
+  "parameters": {
+   "direction": {
+    "default": "auto",
+    "description": "Whirl: clockwise/counterclockwise; others: horizontal/vertical/radial; auto picks clockwise or radial",
+    "enum": [
+     "auto",
+     "clockwise",
+     "counterclockwise",
+     "horizontal",
+     "vertical",
+     "radial"
+    ],
+    "type": "string"
+   },
+   "distortion": {
+    "default": 10,
+    "description": "Strength",
+    "maximum": 50,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "size": {
+    "default": 10,
+    "description": "Size of waves or of the whirl",
+    "maximum": 50,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "style": {
+    "default": "whirl",
+    "description": "Style",
+    "enum": [
+     "whirl",
+     "wave",
+     "concave",
+     "convex"
+    ],
+    "type": "string"
+   }
+  },
+  "title": "Pure deformation",
+  "uses_selection": true
+ },
+ {
+  "description": "Moves the corners of the selection: skew (sideways), perspective (narrow one side) or free.",
+  "group": "distort",
+  "name": "distort",
+  "parameters": {
+   "bottom_left_x": {
+    "default": 0,
+    "description": "Corner move, per-mille of the area's width (x) or height (y); +x right, +y down",
+    "maximum": 1000,
+    "minimum": -1000,
+    "type": "integer"
+   },
+   "bottom_left_y": {
+    "default": 0,
+    "description": "Corner move, per-mille of the area's width (x) or height (y); +x right, +y down",
+    "maximum": 1000,
+    "minimum": -1000,
+    "type": "integer"
+   },
+   "bottom_right_x": {
+    "default": 0,
+    "description": "Corner move, per-mille of the area's width (x) or height (y); +x right, +y down",
+    "maximum": 1000,
+    "minimum": -1000,
+    "type": "integer"
+   },
+   "bottom_right_y": {
+    "default": 0,
+    "description": "Corner move, per-mille of the area's width (x) or height (y); +x right, +y down",
+    "maximum": 1000,
+    "minimum": -1000,
+    "type": "integer"
+   },
+   "style": {
+    "default": "free",
+    "description": "Style",
+    "enum": [
+     "free",
+     "skew",
+     "perspective"
+    ],
+    "type": "string"
+   },
+   "top_left_x": {
+    "default": 0,
+    "description": "Corner move, per-mille of the area's width (x) or height (y); +x right, +y down",
+    "maximum": 1000,
+    "minimum": -1000,
+    "type": "integer"
+   },
+   "top_left_y": {
+    "default": 0,
+    "description": "Corner move, per-mille of the area's width (x) or height (y); +x right, +y down",
+    "maximum": 1000,
+    "minimum": -1000,
+    "type": "integer"
+   },
+   "top_right_x": {
+    "default": 0,
+    "description": "Corner move, per-mille of the area's width (x) or height (y); +x right, +y down",
+    "maximum": 1000,
+    "minimum": -1000,
+    "type": "integer"
+   },
+   "top_right_y": {
+    "default": 0,
+    "description": "Corner move, per-mille of the area's width (x) or height (y); +x right, +y down",
+    "maximum": 1000,
+    "minimum": -1000,
+    "type": "integer"
+   }
+  },
+  "title": "Distort",
+  "uses_selection": true
+ },
+ {
+  "description": "Rotates the selected area in place around its center (the image keeps its size).",
+  "group": "distort",
+  "name": "rotate_selection",
+  "parameters": {
+   "degrees": {
+    "default": 15.0,
+    "description": "Angle, counter-clockwise",
+    "maximum": 360.0,
+    "minimum": -360.0,
+    "type": "number"
+   }
+  },
+  "title": "Rotate area",
+  "uses_selection": true
+ },
+ {
+  "description": "Shifts hues around the color wheel and changes saturation, contrast and brightness. Defaults change nothing. Contrast spreads tones away from mid-gray above 50 and pulls them toward it below 50 (0 is flat gray).",
+  "group": "adjust",
+  "name": "hue_saturation",
+  "parameters": {
+   "brightness": {
+    "default": 0,
+    "description": "Brightness",
+    "maximum": 255,
+    "minimum": -255,
+    "type": "integer"
+   },
+   "contrast": {
+    "default": 50,
+    "description": "Contrast; 50 = unchanged",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "hue_shift": {
+    "default": 0,
+    "description": "Hue rotation, degrees",
+    "maximum": 359,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "saturation": {
+    "default": 0,
+    "description": "Saturation at the same lightness; -255 = gray, 255 = fully saturated, about ±60 is a moderate change",
+    "maximum": 255,
+    "minimum": -255,
+    "type": "integer"
+   }
+  },
+  "title": "Hue / saturation",
+  "uses_selection": true
+ },
+ {
+  "description": "Corrects the picture in one step, by its kind: Auto levels, colors or contrast from the picture's own tones, or a scene (light or heavy shadow, inside with flash or in a room, daylight bright or cloudy, faded) with a tone curve made for it.",
+  "group": "adjust",
+  "name": "smart_tune",
+  "parameters": {
+   "type": {
+    "default": "auto_levels",
+    "description": "What kind of picture, or which automatic correction",
+    "enum": [
+     "auto_levels",
+     "auto_colors",
+     "auto_contrast",
+     "light_shadow",
+     "inside_flash",
+     "inside_room",
+     "heavy_shadow",
+     "daylight_bright",
+     "faded",
+     "daylight_cloudy"
+    ],
+    "type": "string"
+   }
+  },
+  "title": "Smart tune",
+  "uses_selection": true
+ },
+ {
+  "description": "Tints the picture with one color, like a duotone or sepia print (try #704214 for sepia).",
+  "group": "adjust",
+  "name": "colorize",
+  "parameters": {
+   "color": {
+    "default": "#704214",
+    "description": "Tint color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   }
+  },
+  "title": "Colorize",
+  "uses_selection": true
+ },
+ {
+  "description": "Relief look lit from a direction, on a flat color.",
+  "group": "filters",
+  "name": "emboss",
+  "parameters": {
+   "angle": {
+    "default": 135,
+    "description": "Light direction, degrees counter-clockwise from the right",
+    "maximum": 359,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "color": {
+    "default": "#808080",
+    "description": "Background color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   }
+  },
+  "title": "Emboss",
+  "uses_selection": true
+ },
+ {
+  "description": "Classic sharpening: boosts the difference between each pixel and its local mean. preset mild or strong: a fixed gentle or strong sharpening (amount and size are not used).",
+  "group": "filters",
+  "name": "unsharp_mask",
+  "parameters": {
+   "amount": {
+    "default": 40,
+    "description": "Strength, %",
+    "maximum": 99,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "preset": {
+    "default": "custom",
+    "description": "custom: amount and size; mild or strong: fixed sharpening",
+    "enum": [
+     "custom",
+     "mild",
+     "strong"
+    ],
+    "type": "string"
+   },
+   "size": {
+    "default": 3,
+    "description": "Window size in pixels (odd; even values round up)",
+    "maximum": 63,
+    "minimum": 3,
+    "type": "integer"
+   }
+  },
+  "title": "Unsharp mask",
+  "uses_selection": true
+ },
+ {
+  "description": "A predefined 5x5 convolution: smoothing, sharpening, directional emboss (compass directions) or Laplace edge detection.",
+  "group": "enhance",
+  "name": "custom_filter",
+  "parameters": {
+   "preset": {
+    "default": "sharp_1",
+    "description": "Filter",
+    "enum": [
+     "no_filter",
+     "smooth_1",
+     "smooth_2",
+     "smooth_3",
+     "sharp_1",
+     "sharp_2",
+     "sharp_3",
+     "north",
+     "north_east",
+     "east",
+     "south_east",
+     "south",
+     "south_west",
+     "west",
+     "north_west",
+     "laplace_1",
+     "laplace_2",
+     "laplace_3"
+    ],
+    "type": "string"
+   }
+  },
+  "title": "Custom filter",
+  "uses_selection": true
+ },
+ {
+  "description": "Adaptive sharpening that leaves flat areas (skin, sky) alone and sharpens edges.",
+  "group": "enhance",
+  "name": "smartsharp",
+  "parameters": {
+   "contrast": {
+    "default": 70,
+    "description": "Sharpening strength",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "degree": {
+    "default": 50,
+    "description": "Adaptivity, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "gap": {
+    "default": 2,
+    "description": "Noise threshold, levels",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "size": {
+    "default": 3,
+    "description": "Window size in pixels (odd; even values round up)",
+    "maximum": 63,
+    "minimum": 3,
+    "type": "integer"
+   }
+  },
+  "title": "Smartsharp",
+  "uses_selection": true
+ },
+ {
+  "description": "Removes moire and halftone dots from scanned printed pictures.",
+  "group": "enhance",
+  "name": "demoire",
+  "parameters": {
+   "percent": {
+    "default": 50,
+    "description": "Strength, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "size": {
+    "default": 5,
+    "description": "Window size in pixels (odd; even values round up)",
+    "maximum": 63,
+    "minimum": 3,
+    "type": "integer"
+   }
+  },
+  "title": "Demoire",
+  "uses_selection": true
+ },
+ {
+  "description": "Smooths and tones skin in portraits, leaving everything not colored like the picked skin color alone.",
+  "group": "enhance",
+  "name": "skin_makeup",
+  "parameters": {
+   "luminance": {
+    "default": 0,
+    "description": "Brighter or darker skin",
+    "maximum": 50,
+    "minimum": -50,
+    "type": "integer"
+   },
+   "redness": {
+    "default": 0,
+    "description": "Redder or less red skin",
+    "maximum": 50,
+    "minimum": -50,
+    "type": "integer"
+   },
+   "saturation": {
+    "default": 0,
+    "description": "More or less colorful skin, %",
+    "maximum": 50,
+    "minimum": -50,
+    "type": "integer"
+   },
+   "skin": {
+    "default": "#c08080",
+    "description": "Skin color to work on",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "smoothing": {
+    "default": 8,
+    "description": "Smoothing strength",
+    "maximum": 10,
+    "minimum": 1,
+    "type": "integer"
+   }
+  },
+  "title": "Skin makeup",
+  "uses_selection": true
+ },
+ {
+  "description": "Whitens teeth: pulls the yellow out and lifts the lightness, sparing red lips and gums and the dark between teeth. Select the teeth first (an operation works on the selection).",
+  "group": "enhance",
+  "name": "whiten_teeth",
+  "parameters": {
+   "brighten": {
+    "default": 30,
+    "description": "How much lighter, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "whiten": {
+    "default": 60,
+    "description": "How much yellow to take out, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Whiten teeth",
+  "uses_selection": true
+ },
+ {
+  "description": "Brightens the whites of the eyes, taking a little color out of them, and adds local contrast to the iris and lashes, leaving the dark pupil alone. Select the eyes first (an operation works on the selection).",
+  "group": "enhance",
+  "name": "brighten_eyes",
+  "parameters": {
+   "brighten": {
+    "default": 50,
+    "description": "How much lighter the whites, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "detail": {
+    "default": 30,
+    "description": "Local contrast of the iris and lashes, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Brighten eyes",
+  "uses_selection": true
+ },
+ {
+  "description": "Removes dust from a scan: specks darker (or lighter) than what is around them by more than Gap are replaced by the median of their neighborhood; a large dark or light area is left alone. Needs an area at least 30 pixels each way.",
+  "group": "enhance",
+  "name": "dust_cleaner",
+  "parameters": {
+   "dust": {
+    "default": "light",
+    "description": "Dark specks (dust on a print or slide) or light ones (dust on a negative)",
+    "enum": [
+     "dark",
+     "light"
+    ],
+    "type": "string"
+   },
+   "gap": {
+    "default": 17,
+    "description": "How much darker or lighter than around it a speck must be",
+    "maximum": 50,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "strength": {
+    "default": 4,
+    "description": "How far around a speck the repair looks",
+    "maximum": 10,
+    "minimum": 1,
+    "type": "integer"
+   }
+  },
+  "title": "Dust cleaner",
+  "uses_selection": true
+ },
+ {
+  "description": "Removes scratches from a scanned print, slide or negative: thin lines in any direction, lighter or darker than the picture (brightness scratches) or bluish or yellowish (color scratches), filled in from the clean pixels beside them. Needs an area at least 30 pixels each way.",
+  "group": "enhance",
+  "name": "scratch_removal",
+  "parameters": {
+   "scanned_from": {
+    "default": "negative",
+    "description": "A negative (its scratches are light) or a print or slide (dark)",
+    "enum": [
+     "negative",
+     "positive"
+    ],
+    "type": "string"
+   },
+   "scratches": {
+    "default": "brightness",
+    "description": "Which scratches to remove",
+    "enum": [
+     "brightness",
+     "color",
+     "both"
+    ],
+    "type": "string"
+   }
+  },
+  "title": "Scratch removal",
+  "uses_selection": true
+ },
+ {
+  "description": "Removes long thin scratches that run across a scanned film frame, horizontally or vertically, by filling them in from the rows beside them. Needs an area at least 64 pixels each way.",
+  "group": "enhance",
+  "name": "reel_scratches",
+  "parameters": {
+   "direction": {
+    "default": "horizontal",
+    "description": "Which way the scratches run",
+    "enum": [
+     "horizontal",
+     "vertical"
+    ],
+    "type": "string"
+   },
+   "negative": {
+    "default": true,
+    "description": "Scanned from a negative (light scratches); off for a print or positive (dark scratches)",
+    "type": "boolean"
+   }
+  },
+  "title": "Remove reel scratches",
+  "uses_selection": true
+ },
+ {
+  "description": "Focus that changes from the center of the selection to its edges: e.g. sharp face, dreamy blurred surroundings.",
+  "group": "effects",
+  "name": "soft_focus",
+  "parameters": {
+   "inner": {
+    "default": 0,
+    "description": "At the center: negative sharpens, positive blurs",
+    "maximum": 255,
+    "minimum": -255,
+    "type": "integer"
+   },
+   "outer": {
+    "default": 128,
+    "description": "At the edges: negative sharpens, positive blurs",
+    "maximum": 255,
+    "minimum": -255,
+    "type": "integer"
+   }
+  },
+  "title": "Soft focus",
+  "uses_selection": true
+ },
+ {
+  "description": "Smears the picture sideways as if blown away by wind, fading into a color.",
+  "group": "effects",
+  "name": "wind_out",
+  "parameters": {
+   "color": {
+    "default": "#000000",
+    "description": "color: Color it fades into",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "fade": {
+    "default": "picture",
+    "description": "What it fades into: the picture's own average color, or a color you choose",
+    "enum": [
+     "picture",
+     "color"
+    ],
+    "type": "string"
+   },
+   "phase": {
+    "default": 50,
+    "description": "How far it is blown, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Wind out",
+  "uses_selection": true
+ },
+ {
+  "description": "Re-draws the picture with short brush strokes along similar colors.",
+  "group": "effects",
+  "name": "strokes",
+  "parameters": {
+   "tolerance": {
+    "default": 32,
+    "description": "Color tolerance of a stroke, levels",
+    "maximum": 255,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Strokes",
+  "uses_selection": true
+ },
+ {
+  "description": "A medal-like engraved relief.",
+  "group": "effects",
+  "name": "engrave",
+  "parameters": {
+   "lightness": {
+    "default": 10,
+    "description": "Lightness",
+    "maximum": 255,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Engrave",
+  "uses_selection": true
+ },
+ {
+  "description": "Posterized drawing on grainy, embossed paper.",
+  "group": "effects",
+  "name": "note_paper",
+  "parameters": {
+   "grain": {
+    "default": 8,
+    "description": "Paper grain",
+    "maximum": 32,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "levels": {
+    "default": 2,
+    "description": "Number of tones",
+    "maximum": 32,
+    "minimum": 2,
+    "type": "integer"
+   },
+   "relief": {
+    "default": 4,
+    "description": "Paper relief",
+    "maximum": 16,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Random seed",
+    "maximum": 1073741824,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Note paper",
+  "uses_selection": true
+ },
+ {
+  "description": "Sets the black point, white point and midtone brightness (gamma), then the output range: values at or below in_black become out_black, at or above in_white become out_white. luminosity changes lightness only.",
+  "group": "adjust",
+  "name": "levels",
+  "parameters": {
+   "channel": {
+    "default": "rgb",
+    "description": "Which channel",
+    "enum": [
+     "rgb",
+     "red",
+     "green",
+     "blue",
+     "luminosity"
+    ],
+    "type": "string"
+   },
+   "gamma": {
+    "default": 1.0,
+    "description": "Midtones: above 1 brightens, below darkens",
+    "maximum": 9.99,
+    "minimum": 0.1,
+    "type": "number"
+   },
+   "in_black": {
+    "default": 0,
+    "description": "Input black point, 0..255",
+    "maximum": 253,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "in_white": {
+    "default": 255,
+    "description": "Input white point, 0..255",
+    "maximum": 255,
+    "minimum": 2,
+    "type": "integer"
+   },
+   "out_black": {
+    "default": 0,
+    "description": "Output black, 0..255",
+    "maximum": 255,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "out_white": {
+    "default": 255,
+    "description": "Output white, 0..255",
+    "maximum": 255,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Levels",
+  "uses_selection": true
+ },
+ {
+  "description": "Exposure, contrast and tone, as in a photo editor's Basic panel: exposure in stops (linear light); highlights and shadows recover or lift bright and dark areas locally without halos; whites and blacks move the end points. All 0 changes nothing.",
+  "group": "adjust",
+  "name": "light",
+  "parameters": {
+   "blacks": {
+    "default": 0,
+    "description": "Black point: − deeper blacks",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "contrast": {
+    "default": 0,
+    "description": "Contrast",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "exposure": {
+    "default": 0.0,
+    "description": "Stops: +1 doubles the light",
+    "maximum": 4.0,
+    "minimum": -4.0,
+    "type": "number"
+   },
+   "highlights": {
+    "default": 0,
+    "description": "Bright areas: − recovers detail, + brightens",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "shadows": {
+    "default": 0,
+    "description": "Dark areas: + lifts, − deepens",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "whites": {
+    "default": 0,
+    "description": "White point: + brighter whites",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   }
+  },
+  "title": "Light",
+  "uses_selection": true
+ },
+ {
+  "description": "Adds (or with negative values softens) mid-scale contrast, which brings out texture and structure without halos.",
+  "group": "adjust",
+  "name": "clarity",
+  "parameters": {
+   "amount": {
+    "default": 30,
+    "description": "Clarity",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   }
+  },
+  "title": "Clarity",
+  "uses_selection": true
+ },
+ {
+  "description": "Removes a color cast. auto estimates the light from the picture; neutral makes the given color (pick a gray in the picture) neutral; manual sets temperature (+ warmer, − cooler) and tint (+ magenta, − green).",
+  "group": "adjust",
+  "name": "white_balance",
+  "parameters": {
+   "method": {
+    "default": "auto",
+    "description": "How the white is found",
+    "enum": [
+     "auto",
+     "neutral",
+     "manual"
+    ],
+    "type": "string"
+   },
+   "neutral": {
+    "default": "#808080",
+    "description": "neutral: a color that should be gray",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "strength": {
+    "default": 100,
+    "description": "How much of the correction to apply, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "temperature": {
+    "default": 0,
+    "description": "manual: warmer (+) or cooler (−)",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "tint": {
+    "default": 0,
+    "description": "manual: magenta (+) or green (−)",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   }
+  },
+  "title": "White balance",
+  "uses_selection": true
+ },
+ {
+  "description": "Vibrance saturates dull colors most and spares skin tones; saturation changes all colors alike (−100 is black and white). Works on perceptual chroma, so hues and lightness stay.",
+  "group": "adjust",
+  "name": "vibrance",
+  "parameters": {
+   "saturation": {
+    "default": 0,
+    "description": "Saturation",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "vibrance": {
+    "default": 25,
+    "description": "Vibrance",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   }
+  },
+  "title": "Vibrance / saturation",
+  "uses_selection": true
+ },
+ {
+  "description": "Smooths the colored blotches of a high-ISO photo and leaves its lightness, and so its detail, alone. Amount: how much of the smoothed color replaces the original; Radius: how far the color is averaged, in pixels; Edge protection: how strictly only neighbors of a similar lightness and color count, so edges keep their color.",
+  "group": "filters",
+  "name": "reduce_color_noise",
+  "parameters": {
+   "amount": {
+    "default": 70,
+    "description": "Amount, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "protect": {
+    "default": 50,
+    "description": "Edge protection, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "radius": {
+    "default": 8,
+    "description": "Radius, pixels",
+    "maximum": 30,
+    "minimum": 1,
+    "type": "integer"
+   }
+  },
+  "title": "Reduce color noise",
+  "uses_selection": true
+ },
+ {
+  "description": "Hue, saturation and luminance for one color range at a time (reds, oranges, yellows, greens, aquas, blues, purples, magentas), as in a photo editor's HSL panel: deepen a blue sky without touching the greens, turn foliage toward yellow, calm a red jacket. Each slider goes from −100 to 100; hue turns the range up to 30° either way. Grays stay as they are.",
+  "group": "adjust",
+  "name": "color_mixer",
+  "parameters": {
+   "aquas_hue": {
+    "default": 0,
+    "description": "Aquas: hue",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "aquas_luminance": {
+    "default": 0,
+    "description": "Aquas: luminance",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "aquas_saturation": {
+    "default": 0,
+    "description": "Aquas: saturation",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "blues_hue": {
+    "default": 0,
+    "description": "Blues: hue",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "blues_luminance": {
+    "default": 0,
+    "description": "Blues: luminance",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "blues_saturation": {
+    "default": 0,
+    "description": "Blues: saturation",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "greens_hue": {
+    "default": 0,
+    "description": "Greens: hue",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "greens_luminance": {
+    "default": 0,
+    "description": "Greens: luminance",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "greens_saturation": {
+    "default": 0,
+    "description": "Greens: saturation",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "magentas_hue": {
+    "default": 0,
+    "description": "Magentas: hue",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "magentas_luminance": {
+    "default": 0,
+    "description": "Magentas: luminance",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "magentas_saturation": {
+    "default": 0,
+    "description": "Magentas: saturation",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "oranges_hue": {
+    "default": 0,
+    "description": "Oranges: hue",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "oranges_luminance": {
+    "default": 0,
+    "description": "Oranges: luminance",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "oranges_saturation": {
+    "default": 0,
+    "description": "Oranges: saturation",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "purples_hue": {
+    "default": 0,
+    "description": "Purples: hue",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "purples_luminance": {
+    "default": 0,
+    "description": "Purples: luminance",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "purples_saturation": {
+    "default": 0,
+    "description": "Purples: saturation",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "reds_hue": {
+    "default": 0,
+    "description": "Reds: hue",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "reds_luminance": {
+    "default": 0,
+    "description": "Reds: luminance",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "reds_saturation": {
+    "default": 0,
+    "description": "Reds: saturation",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "yellows_hue": {
+    "default": 0,
+    "description": "Yellows: hue",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "yellows_luminance": {
+    "default": 0,
+    "description": "Yellows: luminance",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "yellows_saturation": {
+    "default": 0,
+    "description": "Yellows: saturation",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   }
+  },
+  "title": "Color mixer",
+  "uses_selection": true
+ },
+ {
+  "description": "Converts to black and white with a filter per color, as in Photoshop: each slider sets how bright that color turns out (%). Presets imitate colored lens filters; choose custom to use the sliders. Optional toning tints the midtones.",
+  "group": "adjust",
+  "name": "black_and_white",
+  "parameters": {
+   "blues": {
+    "default": 20,
+    "description": "custom: blues, %",
+    "maximum": 300,
+    "minimum": -200,
+    "type": "integer"
+   },
+   "cyans": {
+    "default": 60,
+    "description": "custom: cyans, %",
+    "maximum": 300,
+    "minimum": -200,
+    "type": "integer"
+   },
+   "greens": {
+    "default": 40,
+    "description": "custom: greens, %",
+    "maximum": 300,
+    "minimum": -200,
+    "type": "integer"
+   },
+   "magentas": {
+    "default": 80,
+    "description": "custom: magentas, %",
+    "maximum": 300,
+    "minimum": -200,
+    "type": "integer"
+   },
+   "preset": {
+    "default": "default",
+    "description": "Filter preset (custom: the sliders)",
+    "enum": [
+     "default",
+     "red filter",
+     "yellow filter",
+     "green filter",
+     "blue filter",
+     "high contrast",
+     "infrared",
+     "custom"
+    ],
+    "type": "string"
+   },
+   "reds": {
+    "default": 40,
+    "description": "custom: reds, %",
+    "maximum": 300,
+    "minimum": -200,
+    "type": "integer"
+   },
+   "tint": {
+    "default": false,
+    "description": "Tone the result",
+    "type": "boolean"
+   },
+   "tint_amount": {
+    "default": 50,
+    "description": "Toning strength, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "tint_color": {
+    "default": "#e2be8c",
+    "description": "Toning color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "yellows": {
+    "default": 60,
+    "description": "custom: yellows, %",
+    "maximum": 300,
+    "minimum": -200,
+    "type": "integer"
+   }
+  },
+  "title": "Black & white",
+  "uses_selection": true
+ },
+ {
+  "description": "Turns the picture into its negative: each color becomes its opposite (black ↔ white).",
+  "group": "adjust",
+  "name": "invert",
+  "parameters": {},
+  "title": "Invert",
+  "uses_selection": true
+ },
+ {
+  "description": "Removes blemishes, dust and small distractions: each spot [x, y, radius] is filled from the best-matching texture nearby, blended seamlessly into its surroundings.",
+  "group": "enhance",
+  "name": "heal",
+  "parameters": {
+   "spots": {
+    "description": "Spots to heal: [[x, y, radius], …] in pixels",
+    "items": {
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 3,
+     "minItems": 3,
+     "type": "array"
+    },
+    "maxItems": 200,
+    "minItems": 1,
+    "type": "array"
+   }
+  },
+  "title": "Heal spots",
+  "uses_selection": true
+ },
+ {
+  "description": "Gives the picture (or the selection) the color and brightness of another open image: its average and spread of lightness and color (in OKLab). For a pasted element in a layered picture, use layer match_below instead.",
+  "group": "adjust",
+  "name": "match_colors",
+  "parameters": {
+   "brightness": {
+    "default": true,
+    "description": "Match brightness and contrast too (else color only)",
+    "type": "boolean"
+   },
+   "reference": {
+    "description": "The image whose colors to take (id of an open image)",
+    "type": "string"
+   },
+   "strength": {
+    "default": 80,
+    "description": "How far to go, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Match colors",
+  "uses_selection": true
+ },
+ {
+  "description": "Removes what is selected (a person, a sign, a wire) and fills in what plausibly was behind it, with an on-device model. Select the object first (select shape object or subject works well); expand grows the selection to catch edges and shadows.",
+  "group": "enhance",
+  "name": "remove_object",
+  "parameters": {
+   "expand": {
+    "default": 18,
+    "description": "Grow the selection by this many pixels",
+    "maximum": 50,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "model": {
+    "default": "best",
+    "description": "best: LaMa, for large objects and texture; fast: MI-GAN, a smaller download",
+    "enum": [
+     "best",
+     "fast"
+    ],
+    "type": "string"
+   }
+  },
+  "title": "Remove object",
+  "uses_selection": true
+ },
+ {
+  "description": "Removes red eye from flash photos: round red pupils turn dark, the catchlight stays. Works in the selection (select around the eyes) or, carefully, the whole picture.",
+  "group": "enhance",
+  "name": "red_eye",
+  "parameters": {},
+  "title": "Red eye removal",
+  "uses_selection": true
+ },
+ {
+  "description": "Corrects converging lines: vertical > 0 makes lines that lean together toward the top (a building shot from below) parallel, < 0 toward the bottom; horizontal does the same left/right. The frame keeps its size; uncovered edges get the background.",
+  "group": "image",
+  "name": "keystone",
+  "parameters": {
+   "background": {
+    "default": "#ffffff",
+    "description": "Color of uncovered edges",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "horizontal": {
+    "default": 0,
+    "description": "Horizontal correction",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "vertical": {
+    "default": 0,
+    "description": "Vertical correction",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   }
+  },
+  "title": "Perspective (keystone)",
+  "uses_selection": true
+ },
+ {
+  "description": "Straightens lines a lens bent: amount > 0 removes barrel distortion (lines bulging outward, from a wide-angle or phone lens), < 0 removes pincushion (lines pinched inward). The middle stays; the change grows toward the edges. scale enlarges (fills the frame) or shrinks (keeps all of the picture); uncovered edges get the background.",
+  "group": "image",
+  "name": "lens_distortion",
+  "parameters": {
+   "amount": {
+    "default": 0,
+    "description": "+ removes barrel, − removes pincushion",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "background": {
+    "default": "#ffffff",
+    "description": "Color of uncovered edges",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "scale": {
+    "default": 100,
+    "description": "Size of the result, %",
+    "maximum": 150,
+    "minimum": 50,
+    "type": "integer"
+   }
+  },
+  "title": "Lens distortion",
+  "uses_selection": true
+ },
+ {
+  "description": "Split toning, as in a photo editor's Color Grading: tints the shadows with one color and the highlights with another (lightness stays); balance moves the split toward the shadows (−) or highlights (+); fade lifts the blacks for a matte, filmic print.",
+  "group": "adjust",
+  "name": "color_grade",
+  "parameters": {
+   "balance": {
+    "default": 0,
+    "description": "Split: − more shadows, + more highlights",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "fade": {
+    "default": 0,
+    "description": "Lift the blacks (matte), %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "highlights": {
+    "default": "#ff9a4d",
+    "description": "Highlights color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "highlights_amount": {
+    "default": 0,
+    "description": "Highlights tint, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "shadows": {
+    "default": "#1f7a80",
+    "description": "Shadows color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "shadows_amount": {
+    "default": 0,
+    "description": "Shadows tint, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Color grading",
+  "uses_selection": true
+ },
+ {
+  "description": "Lightens (dodge, amount > 0) or darkens (burn, amount < 0) the tones of one range, like Photoshop's Dodge and Burn: pick the brush and this effect to paint it on. Shadows, midtones or highlights are changed most where they are lightest or darkest for that range, and the rest is left alone.",
+  "group": "adjust",
+  "name": "dodge_burn",
+  "parameters": {
+   "amount": {
+    "default": 30,
+    "description": "+ dodge (lighter), − burn (darker), %",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "range": {
+    "default": "midtones",
+    "description": "Which tones it changes most",
+    "enum": [
+     "midtones",
+     "shadows",
+     "highlights"
+    ],
+    "type": "string"
+   }
+  },
+  "title": "Dodge and burn",
+  "uses_selection": true
+ },
+ {
+  "description": "Darkens (amount < 0) or lightens (> 0) the picture toward its corners, drawing the eye to the middle; size sets how much of the middle stays untouched.",
+  "group": "adjust",
+  "name": "vignette",
+  "parameters": {
+   "amount": {
+    "default": -30,
+    "description": "Negative darkens the corners (a usual vignette is -30); positive lightens them",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "size": {
+    "default": 50,
+    "description": "Untouched middle, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Vignette",
+  "uses_selection": true
+ },
+ {
+  "description": "Adds film grain: strongest in the midtones, gentle in deep shadows and highlights, with a size that follows the picture. roughness runs from soft clumps to fine speckle; color from monochrome to independent color grain. The same picture, settings and seed always give the same grain.",
+  "group": "adjust",
+  "name": "grain",
+  "parameters": {
+   "amount": {
+    "default": 30,
+    "description": "How strong, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "color": {
+    "default": 0,
+    "description": "Monochrome … color grain, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "roughness": {
+    "default": 50,
+    "description": "Soft clumps … fine speckle, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "seed": {
+    "default": 1,
+    "description": "Which grain",
+    "maximum": 999,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "size": {
+    "default": 3,
+    "description": "Grain size (relative to the picture)",
+    "maximum": 10,
+    "minimum": 1,
+    "type": "integer"
+   }
+  },
+  "title": "Film grain",
+  "uses_selection": true
+ },
+ {
+  "description": "The bright parts bleed soft light into their surroundings, like a diffusion filter or a bloom. spread is relative to the picture; threshold sets how bright counts as bright.",
+  "group": "adjust",
+  "name": "glow",
+  "parameters": {
+   "amount": {
+    "default": 40,
+    "description": "How strong, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "spread": {
+    "default": 25,
+    "description": "How far the light spreads, %",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "threshold": {
+    "default": 60,
+    "description": "How bright counts as bright, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Glow",
+  "uses_selection": true
+ },
+ {
+  "description": "Light scattering back through film: the bright parts bleed a tinted halo (red-orange by default), wider than a glow.",
+  "group": "adjust",
+  "name": "halation",
+  "parameters": {
+   "amount": {
+    "default": 40,
+    "description": "How strong, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "spread": {
+    "default": 40,
+    "description": "How far the halo spreads, %",
+    "maximum": 100,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "threshold": {
+    "default": 70,
+    "description": "How bright counts as bright, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "tint": {
+    "default": "#ff4a1c",
+    "description": "Halo color",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   }
+  },
+  "title": "Halation",
+  "uses_selection": true
+ },
+ {
+  "description": "A one-click style made of several adjustments (light, color, grading, black and white), at the given strength: vivid, golden_hour, cool_morning, cinematic (teal and orange), faded_film, matte, punchy, dreamy, autumn, noir, silver (soft black and white), sepia; modern styles: portra, airy, moody, pastel, neon, bleach_bypass, polaroid, summer, fresh, rose_gold, dramatic, dramatic_cool, mono, chrome, blue_hour, sunset; film looks: cinestill, disposable, y2k_flash, dream_glow.",
+  "group": "adjust",
+  "name": "look",
+  "parameters": {
+   "look": {
+    "default": "vivid",
+    "description": "Which look",
+    "enum": [
+     "vivid",
+     "punchy",
+     "pastel",
+     "neon",
+     "summer",
+     "fresh",
+     "chrome",
+     "bright_pop",
+     "lo_fi",
+     "pink_dusk",
+     "golden_hour",
+     "cool_morning",
+     "autumn",
+     "rose_gold",
+     "blue_hour",
+     "sunset",
+     "warm_glow",
+     "forest",
+     "faded_film",
+     "portra",
+     "bleach_bypass",
+     "polaroid",
+     "cinestill",
+     "disposable",
+     "y2k_flash",
+     "seventies",
+     "cross_process",
+     "soft_vintage",
+     "hard_film",
+     "cinematic",
+     "matte",
+     "dreamy",
+     "airy",
+     "moody",
+     "dramatic",
+     "dramatic_cool",
+     "dream_glow",
+     "noir",
+     "silver",
+     "sepia",
+     "mono",
+     "ink",
+     "lunar",
+     "grit",
+     "cyanotype"
+    ],
+    "type": "string"
+   },
+   "strength": {
+    "default": 100,
+    "description": "How strongly, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Look",
+  "uses_selection": true
+ },
+ {
+  "description": "Blurs the background (or foreground) by how far it is from the focus, like a wide-aperture lens, using the depth of the scene seen by an on-device model. focus: [[x, y]] in pixels, the point to keep sharp (click on the picture); none focuses on the middle. range: how much depth around the focus stays sharp. bokeh: bright points become bright discs.",
+  "group": "enhance",
+  "name": "lens_blur",
+  "parameters": {
+   "amount": {
+    "default": 20,
+    "description": "Blur of what is farthest from the focus, pixels",
+    "maximum": 80,
+    "minimum": 1,
+    "type": "integer"
+   },
+   "bokeh": {
+    "default": 30,
+    "description": "Bright points as bright discs, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   },
+   "focus": {
+    "description": "The point in focus, [[x, y]]; none: the middle",
+    "items": {
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 2,
+     "minItems": 2,
+     "type": "array"
+    },
+    "maxItems": 1,
+    "minItems": 0,
+    "type": "array"
+   },
+   "range": {
+    "default": 10,
+    "description": "Depth kept sharp around the focus, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Lens blur",
+  "uses_selection": true
+ },
+ {
+  "description": "Shifts the colors of the shadows, midtones and highlights separately, as in Photoshop: each between cyan and red, magenta and green, yellow and blue (−100..100). preserve_luminosity keeps each pixel's lightness.",
+  "group": "adjust",
+  "name": "color_balance",
+  "parameters": {
+   "highlights_cyan_red": {
+    "default": 0,
+    "description": "Highlights: cyan (−) to red (+)",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "highlights_magenta_green": {
+    "default": 0,
+    "description": "Highlights: magenta (−) to green (+)",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "highlights_yellow_blue": {
+    "default": 0,
+    "description": "Highlights: yellow (−) to blue (+)",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "midtones_cyan_red": {
+    "default": 0,
+    "description": "Midtones: cyan (−) to red (+)",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "midtones_magenta_green": {
+    "default": 0,
+    "description": "Midtones: magenta (−) to green (+)",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "midtones_yellow_blue": {
+    "default": 0,
+    "description": "Midtones: yellow (−) to blue (+)",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "preserve_luminosity": {
+    "default": true,
+    "description": "Keep each pixel's lightness",
+    "type": "boolean"
+   },
+   "shadows_cyan_red": {
+    "default": 0,
+    "description": "Shadows: cyan (−) to red (+)",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "shadows_magenta_green": {
+    "default": 0,
+    "description": "Shadows: magenta (−) to green (+)",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   },
+   "shadows_yellow_blue": {
+    "default": 0,
+    "description": "Shadows: yellow (−) to blue (+)",
+    "maximum": 100,
+    "minimum": -100,
+    "type": "integer"
+   }
+  },
+  "title": "Color balance",
+  "uses_selection": true
+ },
+ {
+  "description": "Makes each output channel from percentages of the red, green and blue channels plus a constant, as in Photoshop; monochrome makes a gray picture from the red row.",
+  "group": "adjust",
+  "name": "channel_mixer",
+  "parameters": {
+   "blue_blue": {
+    "default": 100,
+    "description": "Blue output: % of blue",
+    "maximum": 200,
+    "minimum": -200,
+    "type": "integer"
+   },
+   "blue_constant": {
+    "default": 0,
+    "description": "Blue output: constant, %",
+    "maximum": 200,
+    "minimum": -200,
+    "type": "integer"
+   },
+   "blue_green": {
+    "default": 0,
+    "description": "Blue output: % of green",
+    "maximum": 200,
+    "minimum": -200,
+    "type": "integer"
+   },
+   "blue_red": {
+    "default": 0,
+    "description": "Blue output: % of red",
+    "maximum": 200,
+    "minimum": -200,
+    "type": "integer"
+   },
+   "green_blue": {
+    "default": 0,
+    "description": "Green output: % of blue",
+    "maximum": 200,
+    "minimum": -200,
+    "type": "integer"
+   },
+   "green_constant": {
+    "default": 0,
+    "description": "Green output: constant, %",
+    "maximum": 200,
+    "minimum": -200,
+    "type": "integer"
+   },
+   "green_green": {
+    "default": 100,
+    "description": "Green output: % of green",
+    "maximum": 200,
+    "minimum": -200,
+    "type": "integer"
+   },
+   "green_red": {
+    "default": 0,
+    "description": "Green output: % of red",
+    "maximum": 200,
+    "minimum": -200,
+    "type": "integer"
+   },
+   "monochrome": {
+    "default": false,
+    "description": "Gray, from the red row",
+    "type": "boolean"
+   },
+   "red_blue": {
+    "default": 0,
+    "description": "Red output: % of blue",
+    "maximum": 200,
+    "minimum": -200,
+    "type": "integer"
+   },
+   "red_constant": {
+    "default": 0,
+    "description": "Red output: constant, %",
+    "maximum": 200,
+    "minimum": -200,
+    "type": "integer"
+   },
+   "red_green": {
+    "default": 0,
+    "description": "Red output: % of green",
+    "maximum": 200,
+    "minimum": -200,
+    "type": "integer"
+   },
+   "red_red": {
+    "default": 100,
+    "description": "Red output: % of red",
+    "maximum": 200,
+    "minimum": -200,
+    "type": "integer"
+   }
+  },
+  "title": "Channel mixer",
+  "uses_selection": true
+ },
+ {
+  "description": "Changes the cyan, magenta, yellow and black in one color range at a time, as in Photoshop: ranges [[range, cyan, magenta, yellow, black], …] with range 0 reds, 1 yellows, 2 greens, 3 cyans, 4 blues, 5 magentas, 6 whites, 7 neutrals, 8 blacks and amounts −100..100. relative scales by the ink already there; absolute adds.",
+  "group": "adjust",
+  "name": "selective_color",
+  "parameters": {
+   "method": {
+    "default": "relative",
+    "description": "How amounts apply",
+    "enum": [
+     "relative",
+     "absolute"
+    ],
+    "type": "string"
+   },
+   "ranges": {
+    "description": "[[range 0..8, cyan, magenta, yellow, black], …]",
+    "items": {
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 5,
+     "minItems": 5,
+     "type": "array"
+    },
+    "maxItems": 9,
+    "minItems": 0,
+    "type": "array"
+   }
+  },
+  "title": "Selective color",
+  "uses_selection": true
+ },
+ {
+  "description": "Replaces each pixel's lightness by a color from a gradient, darkest to lightest: stops [[position 0..100, red, green, blue], …]; reverse runs it backwards. No stops: black to white.",
+  "group": "adjust",
+  "name": "gradient_map",
+  "parameters": {
+   "reverse": {
+    "default": false,
+    "description": "Lightest first",
+    "type": "boolean"
+   },
+   "stops": {
+    "description": "[[position 0..100, red, green, blue], …]",
+    "items": {
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 4,
+     "minItems": 4,
+     "type": "array"
+    },
+    "maxItems": 64,
+    "minItems": 0,
+    "type": "array"
+   }
+  },
+  "title": "Gradient map",
+  "uses_selection": true
+ },
+ {
+  "description": "Makes the picture black and white: pixels at least as light as level become white, the others black.",
+  "group": "adjust",
+  "name": "threshold",
+  "parameters": {
+   "level": {
+    "default": 128,
+    "description": "Lightness that becomes white",
+    "maximum": 255,
+    "minimum": 1,
+    "type": "integer"
+   }
+  },
+  "title": "Threshold",
+  "uses_selection": true
+ },
+ {
+  "description": "Applies a 3D color lookup table (a film emulation or grade from a .cube file): size N and table, N³ colors [[red, green, blue], …] 0..1 with red changing fastest. No table: unchanged.",
+  "group": "adjust",
+  "name": "color_lookup",
+  "parameters": {
+   "size": {
+    "default": 2,
+    "description": "Table size N",
+    "maximum": 64,
+    "minimum": 2,
+    "type": "integer"
+   },
+   "table": {
+    "description": "N³ colors [[red, green, blue], …], 0..1",
+    "items": {
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 3,
+     "minItems": 3,
+     "type": "array"
+    },
+    "maxItems": 262144,
+    "minItems": 0,
+    "type": "array"
+   }
+  },
+  "title": "Color lookup",
+  "uses_selection": true
+ },
+ {
+  "description": "One-step improvement: removes a color cast, stretches the tonal range, sets exposure, adds a little clarity and vibrance. strength scales it all.",
+  "group": "adjust",
+  "name": "auto_enhance",
+  "parameters": {
+   "strength": {
+    "default": 70,
+    "description": "Strength, %",
+    "maximum": 100,
+    "minimum": 0,
+    "type": "integer"
+   }
+  },
+  "title": "Auto enhance",
+  "uses_selection": true
+ },
+ {
+  "description": "Enlarges the picture 2, 3 or 4 times with an on-device model that draws sharp, natural detail instead of blur.",
+  "group": "image",
+  "name": "upscale",
+  "parameters": {
+   "factor": {
+    "default": 2,
+    "description": "How many times larger",
+    "maximum": 4,
+    "minimum": 2,
+    "type": "integer"
+   }
+  },
+  "title": "Enlarge (AI)",
+  "uses_selection": false
+ },
+ {
+  "description": "Straightens a quadrilateral into a rectangle, e.g. a document, painting or screen photographed at an angle: give its four corners [[x, y], …] in the order top-left, top-right, bottom-right, bottom-left; the result is that region, flat, at its average size.",
+  "group": "image",
+  "name": "perspective",
+  "parameters": {
+   "corners": {
+    "description": "Top-left, top-right, bottom-right, bottom-left",
+    "items": {
+     "items": {
+      "type": "number"
+     },
+     "maxItems": 2,
+     "minItems": 2,
+     "type": "array"
+    },
+    "maxItems": 4,
+    "minItems": 4,
+    "type": "array"
+   }
+  },
+  "title": "Perspective (corners)",
+  "uses_selection": false
+ },
+ {
+  "description": "Levels a tilted picture: turns it by angle (counter-clockwise, degrees) and, with crop, cuts it to the largest rectangle of the same proportions without empty corners. With auto, the tilt is found from the picture's long straight edges (a horizon, a building's sides) and angle is not used; it says so if there are none to go by.",
+  "group": "image",
+  "name": "straighten",
+  "parameters": {
+   "angle": {
+    "default": 0.0,
+    "description": "Turn, degrees counter-clockwise",
+    "maximum": 45.0,
+    "minimum": -45.0,
+    "type": "number"
+   },
+   "auto": {
+    "default": false,
+    "description": "Find the tilt from the horizon and straight edges",
+    "type": "boolean"
+   },
+   "background": {
+    "default": "#ffffff",
+    "description": "Color of the corners when not cropping",
+    "pattern": "^#[0-9a-fA-F]{6}$",
+    "type": "string"
+   },
+   "crop": {
+    "default": true,
+    "description": "Cut away the empty corners",
+    "type": "boolean"
+   }
+  },
+  "title": "Straighten",
+  "uses_selection": false
+ }
+]

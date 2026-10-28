@@ -1,0 +1,1013 @@
+{
+ "serverInfo": {
+  "name": "pixtorium",
+  "version": "0.5.4"
+ },
+ "instructions": "Pixtorium is an image editor. Open an image (open_image), look at it (view_image, image_info), optionally select an area (select), apply operations (apply; list_operations shows them with their parameters), check the result with view_image, undo what you don't like, and save (save_image). Operations apply to the selection, with soft edges if it was feathered, or to the whole image when nothing is selected. To change one area (the sky, the background), select it with feather about 2% of the picture's width so no line shows where the edit stops. Coordinates are pixels from the top-left corner of the full-size image, not of the preview. To find something in the picture: view_image {ruler: true} draws labeled lines and names every cell (A1 top left); then select {shape: object, cells: [\"F2\", \"F3\"]} with the cells the thing covers (or box: [x, y, width, height], or points on it); the result shows the selection, so check it before acting. Remove it with apply remove_object {expand: 18} and look at the result; if parts, smears or a seam remain, remove it once more with expand 25, then stop and say what you see; a selection covering far more than one thing means the cells were off. Add or replace content with your own picture model: generate_material gives the area and the mask, generate_place puts the result back as a masked layer. Every call's structuredContent says which History steps it made and how much is selected. Operations that combine images (layer, calculate, stitch, combine_channels) take the ids of other open images as parameters.",
+ "tools": [
+  {
+   "description": "All image operations with their parameters, ranges and defaults.",
+   "inputSchema": {
+    "properties": {},
+    "type": "object"
+   },
+   "name": "list_operations"
+  },
+  {
+   "description": "Opens an image file (PNG, JPEG, TIFF, BMP, GIF, TGA, PCX). Returns its id.",
+   "inputSchema": {
+    "properties": {
+     "path": {
+      "description": "Absolute path",
+      "type": "string"
+     }
+    },
+    "required": [
+     "path"
+    ],
+    "type": "object"
+   },
+   "name": "open_image"
+  },
+  {
+   "description": "Creates a blank image.",
+   "inputSchema": {
+    "properties": {
+     "color": {
+      "description": "#rrggbb, default white",
+      "type": "string"
+     },
+     "height": {
+      "type": "integer"
+     },
+     "width": {
+      "type": "integer"
+     }
+    },
+    "required": [
+     "width",
+     "height"
+    ],
+    "type": "object"
+   },
+   "name": "new_image"
+  },
+  {
+   "description": "Open images and which one is current.",
+   "inputSchema": {
+    "properties": {},
+    "type": "object"
+   },
+   "name": "list_images"
+  },
+  {
+   "description": "Closes an image without saving.",
+   "inputSchema": {
+    "properties": {
+     "image": {
+      "description": "Image id from open_image/new_image; defaults to the last opened image",
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "name": "close_image"
+  },
+  {
+   "description": "Size, selection, history and tonal statistics (mean color, luminance percentiles, clipping) of the image and of the selection.",
+   "inputSchema": {
+    "properties": {
+     "image": {
+      "description": "Image id from open_image/new_image; defaults to the last opened image",
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "name": "image_info"
+  },
+  {
+   "description": "Returns a preview of the image (or of a region of it) to look at. The selection is shown by dimming what is outside it.",
+   "inputSchema": {
+    "properties": {
+     "height": {
+      "type": "integer"
+     },
+     "image": {
+      "description": "Image id from open_image/new_image; defaults to the last opened image",
+      "type": "string"
+     },
+     "max_size": {
+      "description": "Longest side of the preview, 64..2048, default 1024",
+      "type": "integer"
+     },
+     "ruler": {
+      "description": "Draw a coordinate ruler (lines labeled with image pixel coordinates), to point at things; the preview is then 1:1 up to 2048 pixels unless max_size says otherwise; default false",
+      "type": "boolean"
+     },
+     "show_selection": {
+      "description": "Dim outside the selection, default true",
+      "type": "boolean"
+     },
+     "width": {
+      "type": "integer"
+     },
+     "x": {
+      "description": "Left, pixels",
+      "type": "integer"
+     },
+     "y": {
+      "description": "Top, pixels",
+      "type": "integer"
+     }
+    },
+    "type": "object"
+   },
+   "name": "view_image"
+  },
+  {
+   "description": "For a picture model of your own: the area around the selection (a PNG, at most 1024 pixels across) and the selection as a black-and-white mask (white = generate here), with the rectangle they cover. Edit the area with the model, then put the result back with generate_place. Needs a selection.",
+   "inputSchema": {
+    "properties": {
+     "image": {
+      "description": "Image id from open_image/new_image; defaults to the last opened image",
+      "type": "string"
+     },
+     "prompt": {
+      "description": "What to generate (echoed back)",
+      "type": "string"
+     },
+     "whole": {
+      "description": "Send the whole picture as the area, not only around the selection (to continue the picture into a new border); default false",
+      "type": "boolean"
+     }
+    },
+    "type": "object"
+   },
+   "name": "generate_material"
+  },
+  {
+   "description": "Puts a generated picture back as a new pixel layer above the active one, masked by the selection, so nothing outside the selection changes (one history step). Give the rectangle generate_material returned; the picture is scaled to it.",
+   "inputSchema": {
+    "properties": {
+     "height": {
+      "type": "integer"
+     },
+     "image": {
+      "description": "Image id from open_image/new_image; defaults to the last opened image",
+      "type": "string"
+     },
+     "png": {
+      "description": "The picture, base64 (PNG, JPEG or WebP)",
+      "type": "string"
+     },
+     "prompt": {
+      "description": "What was generated; names the layer",
+      "type": "string"
+     },
+     "width": {
+      "type": "integer"
+     },
+     "x": {
+      "description": "Left, pixels",
+      "type": "integer"
+     },
+     "y": {
+      "description": "Top, pixels",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "png",
+     "x",
+     "y",
+     "width",
+     "height"
+    ],
+    "type": "object"
+   },
+   "name": "generate_place"
+  },
+  {
+   "description": "The color of one pixel.",
+   "inputSchema": {
+    "properties": {
+     "image": {
+      "description": "Image id from open_image/new_image; defaults to the last opened image",
+      "type": "string"
+     },
+     "x": {
+      "type": "integer"
+     },
+     "y": {
+      "type": "integer"
+     }
+    },
+    "required": [
+     "x",
+     "y"
+    ],
+    "type": "object"
+   },
+   "name": "pick_color"
+  },
+  {
+   "description": "Selects an area; later operations apply only inside it. Shapes: all; none; invert; rectangle or ellipse (x, y, width, height, or `box` [x, y, width, height]); polygon (points); color (like a magic wand: similar colors around x, y); subject (a photo's main subject, by an on-device model); sky (the open sky that reaches the top of the picture, found by its smooth blue or bright look; an error if there is none; branches and skylines are left out); object (a thing, by an on-device model: give the ruler cells it covers, `cells` like [\"F2\", \"F3\"] from view_image with ruler true, or `box` [x, y, width, height] around it, or `points` on it, with `exclude` points on what to leave out); refine (the selection's edges follow the picture: hair, fur, leaves); save (keep the selection under `name`, until the picture is closed) and load (bring one back, with mode and feather); linear_gradient (the area a graduated filter covers, soft: `angle` degrees, 0 selects the top and fades downward, 90 the left; `position` 0..100, where the middle of the fall-off lies, default 50; `feather_percent` 0..100, the width of the fall-off, default 50) and radial_gradient (an oval that fades out: `center_x`, `center_y` 0..100 percent, default 50; `oval_width`, `oval_height` percent of the picture, default 60; `angle`; `feather_percent`, how far in from the edge the fade starts, default 50; `invert` to select outside), both for use with a following adjustment or add_mask; color_range (Photoshop's Color Range: every pixel by how close it is to `color` #rrggbb, or to the color at x, y, with `fuzziness` 1..255, default 40, as a soft selection; not contiguous); expand, contract, smooth, border (Photoshop's Select › Modify on the current selection, by `amount` pixels, default 4: grow, shrink, round the jaggies, or a band along the edge). mode: replace (default), add, subtract, intersect; feather: soft edge in pixels. The result says how much of the picture is selected; a found object or subject also shows itself as a picture, so you can check it.",
+   "inputSchema": {
+    "properties": {
+     "amount": {
+      "description": "Pixels, for expand, contract, smooth and border (default 4)",
+      "maximum": 100,
+      "minimum": 1,
+      "type": "integer"
+     },
+     "angle": {
+      "description": "linear_gradient: degrees, 0 selects the top and fades downward; radial_gradient: turns the oval",
+      "maximum": 360,
+      "minimum": -360,
+      "type": "number"
+     },
+     "box": {
+      "description": "object: [x, y, width, height] around the object",
+      "items": {
+       "type": "number"
+      },
+      "type": "array"
+     },
+     "cells": {
+      "description": "object: the ruler cells the object covers, like [\"F2\", \"F3\"]",
+      "items": {
+       "type": "string"
+      },
+      "type": "array"
+     },
+     "center_x": {
+      "description": "radial_gradient: the oval's center, % of the width (default 50)",
+      "maximum": 100,
+      "minimum": 0,
+      "type": "number"
+     },
+     "center_y": {
+      "description": "radial_gradient: the oval's center, % of the height (default 50)",
+      "maximum": 100,
+      "minimum": 0,
+      "type": "number"
+     },
+     "color": {
+      "description": "#rrggbb, for color_range (else the color at x, y)",
+      "type": "string"
+     },
+     "contiguous": {
+      "description": "Color shape: only the connected area, default true",
+      "type": "boolean"
+     },
+     "exclude": {
+      "description": "Object shape: points that are not part of it",
+      "items": {
+       "items": {
+        "type": "number"
+       },
+       "maxItems": 2,
+       "minItems": 2,
+       "type": "array"
+      },
+      "type": "array"
+     },
+     "feather": {
+      "description": "Soft edge width in pixels, default 0",
+      "maximum": 500,
+      "minimum": 0,
+      "type": "integer"
+     },
+     "feather_percent": {
+      "description": "linear_gradient: the width of the fall-off, %; radial_gradient: how far in from the edge the fade starts, % (default 50)",
+      "maximum": 100,
+      "minimum": 0,
+      "type": "number"
+     },
+     "fuzziness": {
+      "description": "How far a color may be from `color` and still count, for color_range (default 40)",
+      "maximum": 255,
+      "minimum": 1,
+      "type": "integer"
+     },
+     "height": {
+      "type": "integer"
+     },
+     "image": {
+      "description": "Image id from open_image/new_image; defaults to the last opened image",
+      "type": "string"
+     },
+     "invert": {
+      "description": "radial_gradient: select outside the oval",
+      "type": "boolean"
+     },
+     "mode": {
+      "description": "How to combine with the current selection, default replace",
+      "enum": [
+       "replace",
+       "add",
+       "subtract",
+       "intersect"
+      ],
+      "type": "string"
+     },
+     "name": {
+      "description": "The saved selection's name, for save and load",
+      "type": "string"
+     },
+     "oval_height": {
+      "description": "radial_gradient: the oval's height, % of the picture's (default 60)",
+      "maximum": 200,
+      "minimum": 1,
+      "type": "number"
+     },
+     "oval_width": {
+      "description": "radial_gradient: the oval's width, % of the picture's (default 60)",
+      "maximum": 200,
+      "minimum": 1,
+      "type": "number"
+     },
+     "points": {
+      "items": {
+       "items": {
+        "type": "integer"
+       },
+       "maxItems": 2,
+       "minItems": 2,
+       "type": "array"
+      },
+      "type": "array"
+     },
+     "position": {
+      "description": "linear_gradient: where the middle of the fall-off lies along its direction, % (default 50)",
+      "maximum": 100,
+      "minimum": 0,
+      "type": "number"
+     },
+     "radius": {
+      "description": "Refine: how far from the edge to look, px (default 8)",
+      "type": "integer"
+     },
+     "shape": {
+      "enum": [
+       "all",
+       "none",
+       "invert",
+       "rectangle",
+       "ellipse",
+       "polygon",
+       "color",
+       "color_range",
+       "linear_gradient",
+       "radial_gradient",
+       "subject",
+       "sky",
+       "object",
+       "refine",
+       "save",
+       "load",
+       "expand",
+       "contract",
+       "smooth",
+       "border"
+      ],
+      "type": "string"
+     },
+     "tolerance": {
+      "description": "Color shape: 1..255, default 32",
+      "type": "integer"
+     },
+     "width": {
+      "type": "integer"
+     },
+     "x": {
+      "description": "Left, pixels",
+      "type": "integer"
+     },
+     "y": {
+      "description": "Top, pixels",
+      "type": "integer"
+     }
+    },
+    "required": [
+     "shape"
+    ],
+    "type": "object"
+   },
+   "name": "select"
+  },
+  {
+   "description": "Applies an image operation to the selection (or whole image). Call list_operations for the parameters of each.",
+   "inputSchema": {
+    "properties": {
+     "blend": {
+      "description": "How the result goes onto the picture, as the Operation panel's Blend: a blend mode's name (default Normal)",
+      "type": "string"
+     },
+     "image": {
+      "description": "Image id from open_image/new_image; defaults to the last opened image",
+      "type": "string"
+     },
+     "opacity": {
+      "description": "The result's opacity over the picture, % (default 100)",
+      "maximum": 100,
+      "minimum": 0,
+      "type": "integer"
+     },
+     "operation": {
+      "enum": [
+       "brightness_contrast",
+       "auto_levels",
+       "equalize",
+       "jpeg_artifacts",
+       "minimum",
+       "maximum",
+       "outline",
+       "hand_drawing",
+       "clean_background",
+       "mosaic",
+       "faceted_glass",
+       "crystallize",
+       "triangulate",
+       "buttonize",
+       "cutout",
+       "scatter",
+       "deform",
+       "fill",
+       "picture_hose",
+       "stroke",
+       "fill_fluctuated",
+       "gradient_line",
+       "shape",
+       "flip",
+       "resize",
+       "border",
+       "frame",
+       "canvas_size",
+       "rotate",
+       "crop",
+       "blur",
+       "motion_blur",
+       "reduce_noise",
+       "dust_and_scratches",
+       "curves",
+       "warp",
+       "liquify",
+       "rubber",
+       "custom_deform",
+       "calculate",
+       "stitch",
+       "combine_channels",
+       "posterize",
+       "mosaic_3d",
+       "burst",
+       "blot",
+       "earthquake",
+       "quicksands",
+       "splash",
+       "black_hole",
+       "watercolor",
+       "pastel",
+       "crayons",
+       "gravity",
+       "wind",
+       "wash_out",
+       "pixel_storm",
+       "patches",
+       "texture",
+       "pond_ripples",
+       "frost",
+       "rippled_glass",
+       "rain",
+       "glass",
+       "flat_color",
+       "painting",
+       "mosaic_tiles",
+       "craquelure",
+       "fill_texture",
+       "gradient",
+       "rainbow",
+       "oil_paint",
+       "gouache",
+       "graphic_pen",
+       "relief",
+       "color_relief",
+       "hot_wax",
+       "page_curl",
+       "random_deform",
+       "pure_deform",
+       "distort",
+       "rotate_selection",
+       "hue_saturation",
+       "smart_tune",
+       "colorize",
+       "emboss",
+       "unsharp_mask",
+       "custom_filter",
+       "smartsharp",
+       "demoire",
+       "skin_makeup",
+       "whiten_teeth",
+       "brighten_eyes",
+       "dust_cleaner",
+       "scratch_removal",
+       "reel_scratches",
+       "soft_focus",
+       "wind_out",
+       "strokes",
+       "engrave",
+       "note_paper",
+       "levels",
+       "light",
+       "clarity",
+       "white_balance",
+       "vibrance",
+       "reduce_color_noise",
+       "color_mixer",
+       "black_and_white",
+       "invert",
+       "heal",
+       "match_colors",
+       "remove_object",
+       "red_eye",
+       "keystone",
+       "lens_distortion",
+       "color_grade",
+       "dodge_burn",
+       "vignette",
+       "grain",
+       "glow",
+       "halation",
+       "look",
+       "lens_blur",
+       "color_balance",
+       "channel_mixer",
+       "selective_color",
+       "gradient_map",
+       "threshold",
+       "color_lookup",
+       "auto_enhance",
+       "upscale",
+       "perspective",
+       "straighten"
+      ],
+      "type": "string"
+     },
+     "parameters": {
+      "description": "Operation parameters; omitted ones take their defaults",
+      "type": "object"
+     }
+    },
+    "required": [
+     "operation"
+    ],
+    "type": "object"
+   },
+   "name": "apply"
+  },
+  {
+   "description": "Splits the image into three new grayscale images, one per channel (rgb, hsv or cmy). Apply operations to them and rebuild with apply combine_channels.",
+   "inputSchema": {
+    "properties": {
+     "image": {
+      "description": "Image id from open_image/new_image; defaults to the last opened image",
+      "type": "string"
+     },
+     "model": {
+      "enum": [
+       "rgb",
+       "hsv",
+       "cmy"
+      ],
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "name": "split_channels"
+  },
+  {
+   "description": "Lists the image's layers, bottom first: index, name, kind (pixels or adjustment:<operation>), visibility, opacity, blend mode, mask, and which is active. apply and the painting tools work on the active layer; view_image, pick_color and save_image see the visible result.",
+   "inputSchema": {
+    "properties": {
+     "image": {
+      "description": "Image id from open_image/new_image; defaults to the last opened image",
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "name": "layers"
+  },
+  {
+   "description": "One-click looks (styles made of several adjustments). list: the built-in looks and the user's own; apply (`name`, optional `strength` 0..100): adds the look as adjustment layers above the active layer, so it can be changed or removed later (to bake a built-in look into the pixels instead, apply the operation look); save (`name`): saves the image's visible adjustment layers as a look of the user's own; delete (`name`): deletes one of the user's looks.",
+   "inputSchema": {
+    "properties": {
+     "action": {
+      "enum": [
+       "list",
+       "apply",
+       "save",
+       "delete"
+      ],
+      "type": "string"
+     },
+     "image": {
+      "description": "Image id from open_image/new_image; defaults to the last opened image",
+      "type": "string"
+     },
+     "name": {
+      "description": "The look (apply, save, delete)",
+      "type": "string"
+     },
+     "strength": {
+      "description": "apply, built-in looks: how strongly, %",
+      "maximum": 100,
+      "minimum": 0,
+      "type": "integer"
+     }
+    },
+    "required": [
+     "action"
+    ],
+    "type": "object"
+   },
+   "name": "looks"
+  },
+  {
+   "description": "Changes the layers (as in Photoshop). add_lightroom_file (`path` to a Lightroom preset, .xmp: Light, Clarity, Vibrance, Vignette and Grain layers from its 2012-process settings; the rest is named as not applied); add_levels_file (`path` to a Photoshop levels preset, .alv: one levels layer per set that changes something, for the master, red, green and blue sets); add_curves_file (`path` to a Photoshop curves preset, .acv: one non-destructive curves layer per curve that changes something, for the composite, red, green and blue). new: an empty transparent layer above the active one; duplicate; delete (never the only layer); move_up/move_down; merge_down (into the layer below); flatten (one layer); select (make layer `index` active); show/hide `index`; rename (`name`); set_opacity (0..100); set_blend (`blend`: Normal, Darken, Multiply, Color burn, Lighten, Screen, Color dodge, Add, Overlay, Soft light, Hard light, Difference, Exclusion, Subtract, Hue, Saturation, Color, Luminosity); add_adjustment (`operation` and `parameters`: a non-destructive layer that applies any pixel operation to everything below and can be changed later: an adjustment like curves or vibrance, or a live filter like gaussian blur or oil paint); set_adjustment (new `parameters` for the active adjustment layer); add_mask (from the selection; reveals all without one), delete_mask, invert_mask; refine_mask (the mask's edges follow the picture, for hair and fur; `radius` px, default 8); match_below (the active layer takes on the color and brightness of the layers below, around it, like Photoshop's Harmonize; `strength` 0..100, default 80); add_text (a text layer that stays editable: `text` (lines separated by \\n), `font` (a font name; default sans), `size` in pixels, `color` #rrggbb, `x`, `y` (top-left of the text, pixels), `align` left/center/right); set_text (change the active text layer: give only what changes); move (the active layer by `dx`, `dy` pixels; text stays editable); transform (the active layer scaled by `scale`, or `scale_x` and `scale_y`, turned by `degrees` counter-clockwise and moved by `dx`, `dy`, about its content's center, resampled once; with a selection on a pixel layer only the selected pixels, leaving a hole, and the selection follows them; text stays editable under a move or a proportional scale and becomes pixels under a turn or a free scale; refused by the position lock, and by the pixels lock unless it only moves); lock/unlock (`lock`: alpha keeps edits to the opaque pixels, pixels refuses edits of the pixels, position refuses moving, all refuses every change but name, visibility and order; alpha and pixels on pixel layers only). clip (Create clipping mask: the active layer shows only where the layer below it, its base, does, in the base's opacity and blend mode; a layer made inside a group joins it) and release_clip; group (the active layer, or group, into a new group: Pass Through, open, active; a layer made while an open group is active goes into it; moving a layer next to an open group enters it), ungroup (the group's layers stay, a level up), delete on a group (with its contents; `contents: false`: the group only), fold (`index`: a group shown open or closed). Layers are listed bottom first with `depth` (how many groups they are inside) and kind `group` for groups. These are history steps, except select/show/hide/lock/unlock/fold.",
+   "inputSchema": {
+    "properties": {
+     "action": {
+      "enum": [
+       "new",
+       "duplicate",
+       "delete",
+       "move_up",
+       "move_down",
+       "merge_down",
+       "flatten",
+       "select",
+       "show",
+       "hide",
+       "rename",
+       "set_opacity",
+       "set_blend",
+       "add_adjustment",
+       "set_adjustment",
+       "add_mask",
+       "delete_mask",
+       "invert_mask",
+       "refine_mask",
+       "match_below",
+       "add_text",
+       "set_text",
+       "move",
+       "transform",
+       "lock",
+       "unlock",
+       "clip",
+       "release_clip",
+       "group",
+       "ungroup",
+       "fold",
+       "add_curves_file",
+       "add_levels_file",
+       "add_lightroom_file"
+      ],
+      "type": "string"
+     },
+     "align": {
+      "enum": [
+       "left",
+       "center",
+       "right"
+      ],
+      "type": "string"
+     },
+     "blend": {
+      "type": "string"
+     },
+     "color": {
+      "description": "#rrggbb",
+      "type": "string"
+     },
+     "contents": {
+      "description": "delete on a group: false keeps its layers (default true)",
+      "type": "boolean"
+     },
+     "degrees": {
+      "description": "transform: the turn, counter-clockwise",
+      "type": "number"
+     },
+     "dx": {
+      "description": "move, transform: pixels right (negative: left)",
+      "type": "number"
+     },
+     "dy": {
+      "description": "move, transform: pixels down (negative: up)",
+      "type": "number"
+     },
+     "font": {
+      "type": "string"
+     },
+     "image": {
+      "description": "Image id from open_image/new_image; defaults to the last opened image",
+      "type": "string"
+     },
+     "index": {
+      "description": "Layer position from the bottom (select, show, hide)",
+      "minimum": 0,
+      "type": "integer"
+     },
+     "lock": {
+      "description": "lock, unlock: which of the active layer's locks (default all)",
+      "enum": [
+       "alpha",
+       "pixels",
+       "position",
+       "all"
+      ],
+      "type": "string"
+     },
+     "name": {
+      "type": "string"
+     },
+     "opacity": {
+      "maximum": 100,
+      "minimum": 0,
+      "type": "integer"
+     },
+     "operation": {
+      "description": "add_adjustment: an operation from list_operations",
+      "type": "string"
+     },
+     "outline": {
+      "description": "add_text, set_text: an outline around the letters, percent of the size (0: none; 8 is a meme's)",
+      "maximum": 30,
+      "minimum": 0,
+      "type": "integer"
+     },
+     "outline_color": {
+      "description": "add_text, set_text: the outline's #rrggbb",
+      "type": "string"
+     },
+     "parameters": {
+      "type": "object"
+     },
+     "path": {
+      "description": "add_curves_file, add_levels_file or add_lightroom_file: a Photoshop curves preset (.acv), levels preset (.alv) or Lightroom preset (.xmp)",
+      "type": "string"
+     },
+     "plate": {
+      "description": "add_text, set_text: a rounded plate behind the text, percent opaque (0: none; a label or badge)",
+      "maximum": 100,
+      "minimum": 0,
+      "type": "integer"
+     },
+     "plate_color": {
+      "description": "add_text, set_text: the plate's #rrggbb",
+      "type": "string"
+     },
+     "radius": {
+      "maximum": 64,
+      "minimum": 1,
+      "type": "integer"
+     },
+     "scale": {
+      "description": "transform: both axes (1 keeps the size)",
+      "type": "number"
+     },
+     "scale_x": {
+      "description": "transform: the horizontal scale (over `scale`)",
+      "type": "number"
+     },
+     "scale_y": {
+      "description": "transform: the vertical scale (over `scale`)",
+      "type": "number"
+     },
+     "shadow": {
+      "description": "add_text, set_text: a soft black shadow, percent (0: none)",
+      "maximum": 100,
+      "minimum": 0,
+      "type": "integer"
+     },
+     "size": {
+      "description": "Text size, pixels",
+      "type": "number"
+     },
+     "strength": {
+      "maximum": 100,
+      "minimum": 0,
+      "type": "integer"
+     },
+     "text": {
+      "description": "add_text, set_text: the words; \\n starts a new line",
+      "type": "string"
+     },
+     "x": {
+      "type": "number"
+     },
+     "y": {
+      "type": "number"
+     }
+    },
+    "required": [
+     "action"
+    ],
+    "type": "object"
+   },
+   "name": "layer"
+  },
+  {
+   "description": "In the Pixtorium app: brings a panel to the front for the user (operation, gallery, layers, history). With `operation` (and optional `parameters`), opens that operation in the Operation panel with a live preview for the user to fine-tune and apply, instead of applying it yourself. With `tool`, selects a tool for the user (rectangle, ellipse, polygon, lasso, magic wand, text, brush, eyedropper, crop).",
+   "inputSchema": {
+    "properties": {
+     "operation": {
+      "type": "string"
+     },
+     "panel": {
+      "enum": [
+       "operation",
+       "gallery",
+       "layers",
+       "history"
+      ],
+      "type": "string"
+     },
+     "parameters": {
+      "type": "object"
+     },
+     "tool": {
+      "type": "string"
+     }
+    },
+    "type": "object"
+   },
+   "name": "show_panel"
+  },
+  {
+   "description": "Lessons: the person wants to learn to fix a photo. list them; start one (opens a practice picture with that problem and says what to teach); check the person's result (whether the problem is fixed, and the measure).",
+   "inputSchema": {
+    "properties": {
+     "action": {
+      "enum": [
+       "list",
+       "start",
+       "check"
+      ],
+      "type": "string"
+     },
+     "image": {
+      "description": "check: the image (the current one by default)",
+      "type": "string"
+     },
+     "lesson": {
+      "description": "start, check: the lesson (its id or title)",
+      "type": "string"
+     }
+    },
+    "required": [
+     "action"
+    ],
+    "type": "object"
+   },
+   "name": "lesson"
+  },
+  {
+   "description": "Recorded macros (Edit › Macros in the app): list them with their steps; play one on the image (its steps run in order, as the tools they are; a step that is a classic command plays only in the app); batch: play one on every picture in the folder `from` and write the results to the folder `to` (desktop; `format` such as jpg or png, `quality`, `long_side`; nothing is overwritten); save one from `steps` (each {tool, arguments}, as you would call the tools: for example after doing something the person wants to repeat on other pictures); delete one.",
+   "inputSchema": {
+    "properties": {
+     "action": {
+      "enum": [
+       "list",
+       "play",
+       "batch",
+       "save",
+       "delete"
+      ],
+      "type": "string"
+     },
+     "format": {
+      "description": "batch: jpg (the default), png, webp, tif or bmp",
+      "type": "string"
+     },
+     "from": {
+      "description": "batch: the folder of pictures",
+      "type": "string"
+     },
+     "image": {
+      "description": "Image id from open_image/new_image; defaults to the last opened image",
+      "type": "string"
+     },
+     "long_side": {
+      "description": "batch: the longest side in pixels (0 keeps the size; never enlarged)",
+      "type": "integer"
+     },
+     "name": {
+      "type": "string"
+     },
+     "quality": {
+      "description": "batch: JPEG or WebP quality, 1 to 100",
+      "type": "integer"
+     },
+     "steps": {
+      "description": "save: [{tool, arguments}, ...]",
+      "items": {
+       "type": "object"
+      },
+      "type": "array"
+     },
+     "to": {
+      "description": "batch: the folder the results go to",
+      "type": "string"
+     }
+    },
+    "required": [
+     "action"
+    ],
+    "type": "object"
+   },
+   "name": "macro"
+  },
+  {
+   "description": "Undoes the last step(s), including selection changes.",
+   "inputSchema": {
+    "properties": {
+     "image": {
+      "description": "Image id from open_image/new_image; defaults to the last opened image",
+      "type": "string"
+     },
+     "steps": {
+      "minimum": 1,
+      "type": "integer"
+     }
+    },
+    "type": "object"
+   },
+   "name": "undo"
+  },
+  {
+   "description": "Redoes undone step(s).",
+   "inputSchema": {
+    "properties": {
+     "image": {
+      "description": "Image id from open_image/new_image; defaults to the last opened image",
+      "type": "string"
+     },
+     "steps": {
+      "minimum": 1,
+      "type": "integer"
+     }
+    },
+    "type": "object"
+   },
+   "name": "redo"
+  },
+  {
+   "description": "Saves the image; the format follows the extension: .ora (OpenRaster) keeps the layers; .png, .webp, .jpg, .tif, .bmp, .gif, .tga, .pcx save the visible result (PNG, WebP and TIFF keep transparency). quality and long_side export a copy for the web or email. Won't replace another existing file unless overwrite is true.",
+   "inputSchema": {
+    "properties": {
+     "image": {
+      "description": "Image id from open_image/new_image; defaults to the last opened image",
+      "type": "string"
+     },
+     "long_side": {
+      "description": "Scale down so the longest side is at most this (export)",
+      "minimum": 1,
+      "type": "integer"
+     },
+     "overwrite": {
+      "type": "boolean"
+     },
+     "path": {
+      "type": "string"
+     },
+     "quality": {
+      "description": "JPEG quality (export)",
+      "maximum": 100,
+      "minimum": 1,
+      "type": "integer"
+     },
+     "sharpen": {
+      "description": "Output sharpening after the scaling, for a copy to share (export; default none)",
+      "enum": [
+       "none",
+       "low",
+       "standard",
+       "high"
+      ],
+      "type": "string"
+     },
+     "strip_metadata": {
+      "description": "Leave the photo's details (camera, copyright, location) out of the file (export); by default JPEG, PNG and WebP keep them",
+      "type": "boolean"
+     }
+    },
+    "type": "object"
+   },
+   "name": "save_image"
+  }
+ ]
+}
