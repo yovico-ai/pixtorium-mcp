@@ -25,7 +25,7 @@ with one entry per agent. Or start the editor with `pixtorium --agents`.
 | Claude Code | `claude mcp add -s user --transport http pixtorium http://127.0.0.1:8737/mcp` |
 | Codex (CLI, IDE extension, app) | `codex mcp add pixtorium --url http://127.0.0.1:8737/mcp` |
 | Claude Desktop | **Agents › Add to Claude Desktop** in Pixtorium, then restart Claude Desktop |
-| Any other MCP client | Streamable HTTP at the address above, or stdio through the bridge below |
+| Any other MCP client | the HTTP endpoint at the address above, or stdio through the bridge below |
 
 Use the port the **Agents** menu shows if it is not 8737.
 
